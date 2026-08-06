@@ -1,15 +1,26 @@
+import Image from "next/image";
 import HowItWorksVideos from "@/components/HowItWorksVideos";
 
 export default function HowItWorks() {
   return (
     <div className="flex flex-col flex-1 bg-zinc-50">
       {/* Hero */}
-      <section className="bg-white py-20 px-8 text-center">
-        <h1 className="text-4xl font-bold text-gray-900 mb-4">How It Works</h1>
-        <p className="text-lg text-gray-600 max-w-xl mx-auto">
-          Bid2Build makes it simple to connect clients with skilled contractors.
-          Watch the steps below to see how easy it is to get started.
-        </p>
+      <section className="relative w-full h-72 md:h-96">
+        <Image
+          src="/images/how_hero.jpeg"
+          alt="How It Works"
+          fill
+          className="object-cover"
+          priority
+        />
+        <div className="absolute inset-0 bg-black/50" />
+        <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-8">
+          <h1 className="text-4xl font-bold text-white mb-3">How It Works</h1>
+          <p className="text-lg text-white/80 max-w-xl">
+            Bid2Build makes it simple to connect clients with skilled contractors.
+            Watch the steps below to see how easy it is to get started.
+          </p>
+        </div>
       </section>
 
       {/* Toggle + Videos */}
