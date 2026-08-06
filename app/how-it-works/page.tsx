@@ -7,7 +7,7 @@ export default function HowItWorks() {
       {/* Hero */}
       <section className="relative w-full h-72 md:h-96">
         <Image
-          src="/images/how_hero.jpeg"
+          src="/images/construction_site_enhanced.png"
           alt="How It Works"
           fill
           className="object-cover"
