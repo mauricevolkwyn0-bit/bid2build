@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { updateContractorProfile } from "@/app/actions/contractor";
+import AddressAutocomplete from "@/components/AddressAutocomplete";
 
 interface ProfileData {
   firstName: string;
@@ -38,6 +39,24 @@ export default function ContractorProfileForm({ userId, initialData }: Props) {
 
   function set(field: keyof ProfileData, value: string | boolean) {
     setData((prev) => ({ ...prev, [field]: value }));
+    setSuccess(false);
+  }
+
+  function handleAddressSelect(result: {
+    addressLine1: string;
+    addressLine2: string;
+    city: string;
+    province: string;
+    postalCode: string;
+  }) {
+    setData((prev) => ({
+      ...prev,
+      addressLine1: result.addressLine1,
+      addressLine2: result.addressLine2 || prev.addressLine2,
+      city: result.city || prev.city,
+      province: result.province || prev.province,
+      postalCode: result.postalCode || prev.postalCode,
+    }));
     setSuccess(false);
   }
 
@@ -95,12 +114,12 @@ export default function ContractorProfileForm({ userId, initialData }: Props) {
           </div>
           <div className="sm:col-span-2">
             <label className={labelClass}>Street Address</label>
-            <input
-              type="text"
+            <AddressAutocomplete
               value={data.addressLine1}
-              onChange={(e) => set("addressLine1", e.target.value)}
+              onChange={(v) => set("addressLine1", v)}
+              onPlaceSelected={handleAddressSelect}
               className={inputClass}
-              placeholder="e.g. 10 Horridus Place"
+              placeholder="Start typing your address…"
             />
           </div>
           <div className="sm:col-span-2">
