@@ -62,7 +62,7 @@ export default function DashboardSidebar({ role, firstName, lastName }: Dashboar
   const initials = `${firstName[0] ?? ""}${lastName[0] ?? ""}`.toUpperCase();
 
   return (
-    <aside className="w-64 bg-gray-900 h-full flex flex-col flex-shrink-0 overflow-y-auto">
+    <aside className="hidden lg:flex w-64 bg-gray-900 h-full flex-col flex-shrink-0 overflow-y-auto">
       {/* Logo */}
       <div className="p-6 border-b border-gray-800">
         <Image src="/images/company_logo.png" alt="Bid2Build" width={140} height={46} />
