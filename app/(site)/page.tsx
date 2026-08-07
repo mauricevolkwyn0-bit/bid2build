@@ -7,8 +7,9 @@ import FindWorkButton from "@/components/FindWorkButton";
 export default function Home() {
   return (
     <div className="flex flex-col flex-1 bg-zinc-50">
-      {/* Hero */}
-      <section className="relative w-full h-[600px]">
+
+      {/* ── Hero ── */}
+      <section className="relative w-full h-[500px] sm:h-[600px]">
         <Image
           src="/images/home_hero.jpeg"
           alt="Bid2Build hero"
@@ -16,15 +17,12 @@ export default function Home() {
           className="object-cover"
           priority
         />
-        {/* Overlay */}
         <div className="absolute inset-0 bg-black/50" />
-
-        {/* Hero content */}
         <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-6">
           <h1 className="text-3xl sm:text-5xl font-bold text-white mb-4 max-w-3xl leading-tight">
             Connect with Skilled Professionals
           </h1>
-          <p className="text-base sm:text-xl text-white/80 mb-8 max-w-xl">
+          <p className="text-sm sm:text-xl text-white/80 mb-8 max-w-xl">
             Post a job, receive bids, and hire the best tradespeople and
             contractors all in one place.
           </p>
@@ -40,71 +38,65 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Stats */}
-      <section className="bg-gray-900 py-14 px-4">
-        <div className="max-w-5xl mx-auto grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
-          <div className="flex flex-col items-center gap-2">
-            <span className="text-4xl font-bold text-orange-500">12,500+</span>
-            <span className="text-sm font-medium text-gray-400 uppercase tracking-widest">Total Clients</span>
-          </div>
-          <div className="flex flex-col items-center gap-2">
-            <span className="text-4xl font-bold text-orange-500">8,300+</span>
-            <span className="text-sm font-medium text-gray-400 uppercase tracking-widest">Total Contractors</span>
-          </div>
-          <div className="flex flex-col items-center gap-2">
-            <span className="text-4xl font-bold text-orange-500">R250M+</span>
-            <span className="text-sm font-medium text-gray-400 uppercase tracking-widest">Total Project Value</span>
-          </div>
-          <div className="flex flex-col items-center gap-2">
-            <span className="text-4xl font-bold text-orange-500">1,200+</span>
-            <span className="text-sm font-medium text-gray-400 uppercase tracking-widest">Total Suppliers</span>
-          </div>
+      {/* ── Stats ── */}
+      <section className="bg-gray-900 py-10 sm:py-14 px-4">
+        <div className="max-w-5xl mx-auto grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 text-center">
+          {[
+            { value: "12,500+", label: "Total Clients" },
+            { value: "8,300+",  label: "Total Contractors" },
+            { value: "R250M+",  label: "Total Project Value" },
+            { value: "1,200+",  label: "Total Suppliers" },
+          ].map((s) => (
+            <div key={s.label} className="flex flex-col items-center gap-1.5">
+              <span className="text-2xl sm:text-4xl font-bold text-orange-500">{s.value}</span>
+              <span className="text-[10px] sm:text-xs font-medium text-gray-400 uppercase tracking-wider">{s.label}</span>
+            </div>
+          ))}
         </div>
       </section>
 
+      {/* ── How It Works ── */}
       <HowItWorksSection />
 
-      {/* About Us */}
-      <section className="bg-zinc-50 py-20 px-4">
-        <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+      {/* ── About Us ── */}
+      <section className="bg-zinc-50 py-12 sm:py-20 px-4">
+        <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-12 items-center">
           {/* Placeholder image */}
           <div className="w-full aspect-[4/3] rounded-2xl bg-gray-200 flex items-center justify-center overflow-hidden">
-            <svg className="w-20 h-20 text-gray-400" fill="none" stroke="currentColor" strokeWidth={1.2} viewBox="0 0 24 24">
+            <svg className="w-16 h-16 sm:w-20 sm:h-20 text-gray-400" fill="none" stroke="currentColor" strokeWidth={1.2} viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5M7.5 3.75h.008v.008H7.5V3.75zm0 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
             </svg>
           </div>
 
           {/* Text */}
-          <div className="flex flex-col gap-5">
+          <div className="flex flex-col gap-4 sm:gap-5">
             <span className="text-xs font-bold text-orange-500 uppercase tracking-widest">About Us</span>
-            <h2 className="text-3xl font-bold text-gray-900 leading-snug">
-              Building Opportunities, <br className="hidden sm:block" /> One Bid at a Time
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 leading-snug">
+              Building Opportunities, One Bid at a Time
             </h2>
-            <p className="text-gray-600 leading-relaxed">
+            <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
               Bid2Build was founded with a simple mission — to connect people who need skilled work done with the
               professionals who can do it best. We believe that finding reliable tradespeople and contractors
-              shouldn't be complicated or time-consuming.
+              shouldn&apos;t be complicated or time-consuming.
             </p>
-            <p className="text-gray-600 leading-relaxed">
+            <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
               Our platform brings together clients, contractors, and suppliers in one trusted marketplace.
-              Whether you're renovating your home, managing a construction project, or growing your trade
+              Whether you&apos;re renovating your home, managing a construction project, or growing your trade
               business, Bid2Build gives you the tools to get it done with confidence.
             </p>
-            <div className="flex gap-8 mt-2">
-              <div>
-                <p className="text-2xl font-bold text-orange-500">5+</p>
-                <p className="text-sm text-gray-500 mt-0.5">Years in Business</p>
-              </div>
-              <div>
-                <p className="text-2xl font-bold text-orange-500">20k+</p>
-                <p className="text-sm text-gray-500 mt-0.5">Happy Users</p>
-              </div>
-              <div>
-                <p className="text-2xl font-bold text-orange-500">9</p>
-                <p className="text-sm text-gray-500 mt-0.5">Provinces Covered</p>
-              </div>
+            <div className="flex gap-6 sm:gap-8 mt-1">
+              {[
+                { value: "5+",  label: "Years in Business" },
+                { value: "20k+", label: "Happy Users" },
+                { value: "9",   label: "Provinces Covered" },
+              ].map((s) => (
+                <div key={s.label}>
+                  <p className="text-xl sm:text-2xl font-bold text-orange-500">{s.value}</p>
+                  <p className="text-xs sm:text-sm text-gray-500 mt-0.5">{s.label}</p>
+                </div>
+              ))}
             </div>
-            <div className="mt-2">
+            <div className="mt-1">
               <a
                 href="/how-it-works"
                 className="inline-flex items-center justify-center rounded-full bg-orange-500 hover:bg-orange-600 text-white font-semibold px-6 py-2.5 text-sm transition-colors"
@@ -116,16 +108,14 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Video Section */}
-      <section className="bg-gray-900 py-20 px-4">
+      {/* ── Video ── */}
+      <section className="bg-gray-900 py-12 sm:py-20 px-4">
         <div className="max-w-4xl mx-auto text-center">
-          <span className="text-xs font-bold text-orange-500 uppercase tracking-widest">Watch & Learn</span>
-          <h2 className="text-3xl font-bold text-white mt-2 mb-3">See Bid2Build in Action</h2>
-          <p className="text-gray-400 mb-10 max-w-xl mx-auto">
+          <span className="text-xs font-bold text-orange-500 uppercase tracking-widest">Watch &amp; Learn</span>
+          <h2 className="text-2xl sm:text-3xl font-bold text-white mt-2 mb-2">See Bid2Build in Action</h2>
+          <p className="text-sm sm:text-base text-gray-400 mb-6 sm:mb-10 max-w-xl mx-auto">
             Watch how easy it is to post a job, receive bids, and get your project completed with confidence.
           </p>
-
-          {/* Video embed — replace YOUR_YOUTUBE_VIDEO_ID with your actual YouTube video ID */}
           <div className="relative w-full aspect-video rounded-2xl overflow-hidden shadow-2xl">
             <iframe
               className="absolute inset-0 w-full h-full"
@@ -138,22 +128,20 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Call to Action */}
-      <section className="bg-orange-500 py-20 px-4">
+      {/* ── CTA ── */}
+      <section className="bg-orange-500 py-14 sm:py-20 px-4">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl font-bold text-white mb-4 leading-tight">
+          <h2 className="text-2xl sm:text-4xl font-bold text-white mb-3 sm:mb-4 leading-tight">
             Ready to Build Something Great?
           </h2>
-          <p className="text-orange-100 text-lg mb-10 max-w-xl mx-auto">
+          <p className="text-orange-100 text-sm sm:text-lg mb-8 sm:mb-10 max-w-xl mx-auto">
             Join thousands of clients and contractors already using Bid2Build to get work done faster, smarter, and with confidence.
           </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
             <PostJobButton className="inline-flex items-center justify-center rounded-full bg-white text-orange-600 font-semibold px-8 py-3 hover:bg-orange-50 transition-colors w-full sm:w-auto" />
             <FindWorkButton className="inline-flex items-center justify-center rounded-full bg-gray-900 text-white font-semibold px-8 py-3 hover:bg-gray-800 transition-colors w-full sm:w-auto" />
           </div>
-
-          {/* Trust line */}
-          <p className="text-orange-200 text-sm mt-10 flex items-center justify-center gap-2">
+          <p className="text-orange-200 text-xs sm:text-sm mt-8 flex flex-wrap items-center justify-center gap-2">
             <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
               <path fillRule="evenodd" d="M10 1a4.5 4.5 0 00-4.5 4.5V9H5a2 2 0 00-2 2v6a2 2 0 002 2h10a2 2 0 002-2v-6a2 2 0 00-2-2h-.5V5.5A4.5 4.5 0 0010 1zm3 8V5.5a3 3 0 10-6 0V9h6z" clipRule="evenodd" />
             </svg>
@@ -161,6 +149,7 @@ export default function Home() {
           </p>
         </div>
       </section>
+
     </div>
   );
 }
