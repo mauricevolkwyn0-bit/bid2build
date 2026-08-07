@@ -29,7 +29,7 @@ export default function Navbar() {
   return (
     <Disclosure as="nav" className="bg-gray-100 shadow-sm">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="relative flex h-20 items-center justify-between">
+        <div className="relative flex h-16 sm:h-20 items-center justify-between">
           {/* Mobile menu button */}
           <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
             <DisclosureButton className="group relative inline-flex items-center justify-center rounded-md p-2 text-gray-500 hover:bg-orange-50 hover:text-orange-600 focus:outline-2 focus:-outline-offset-1 focus:outline-orange-500">
@@ -46,9 +46,10 @@ export default function Navbar() {
               <Link href="/">
                 <Image
                   src="/images/company_logo.png"
-                  alt="Just Work logo"
-                  width={200}
-                  height={80}
+                  alt="Bid2Build logo"
+                  width={160}
+                  height={64}
+                  className="w-[140px] sm:w-[180px]"
                   priority
                 />
               </Link>
@@ -79,8 +80,11 @@ export default function Navbar() {
           </div>
 
           {/* Right side actions */}
-          <div className="absolute inset-y-0 right-0 flex items-center gap-3 sm:static sm:inset-auto">
-            <LoginModal />
+          <div className="absolute inset-y-0 right-0 flex items-center gap-2 sm:gap-3 sm:static sm:inset-auto">
+            {/* Login: desktop only */}
+            <span className="hidden sm:flex">
+              <LoginModal />
+            </span>
             <SignupModal />
             <PostJobButton className="hidden sm:inline-flex items-center justify-center rounded-full bg-gray-900 hover:bg-gray-800 text-white text-sm font-medium px-5 py-2 transition-colors" />
           </div>
@@ -88,8 +92,8 @@ export default function Navbar() {
       </div>
 
       {/* Mobile menu */}
-      <DisclosurePanel className="sm:hidden">
-        <div className="space-y-1 px-4 pt-2 pb-4">
+      <DisclosurePanel className="sm:hidden border-t border-gray-200">
+        <div className="px-4 pt-3 pb-4 space-y-1">
           {navigation.map((item) => {
             const current = pathname === item.href;
             return (
@@ -109,8 +113,10 @@ export default function Navbar() {
               </DisclosureButton>
             );
           })}
-          <div className="pt-2">
-            <PostJobButton className="block w-full text-center rounded-full bg-gray-900 hover:bg-gray-800 text-white text-sm font-medium px-5 py-2 transition-colors" />
+
+          <div className="pt-3 border-t border-gray-200 flex flex-col gap-2">
+            <LoginModal />
+            <PostJobButton className="block w-full text-center rounded-full bg-gray-900 hover:bg-gray-800 text-white text-sm font-medium px-5 py-2.5 transition-colors" />
           </div>
         </div>
       </DisclosurePanel>

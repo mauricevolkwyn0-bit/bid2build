@@ -19,15 +19,15 @@ export default function Home() {
         <div className="absolute inset-0 bg-black/50" />
 
         {/* Hero content */}
-        <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-8">
-          <h1 className="text-5xl font-bold text-white mb-4 max-w-3xl leading-tight">
+        <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-6">
+          <h1 className="text-3xl sm:text-5xl font-bold text-white mb-4 max-w-3xl leading-tight">
             Connect with Skilled Professionals
           </h1>
-          <p className="text-xl text-white/80 mb-8 max-w-xl">
+          <p className="text-base sm:text-xl text-white/80 mb-8 max-w-xl">
             Post a job, receive bids, and hire the best tradespeople and
             contractors — all in one place.
           </p>
-          <div className="flex gap-4">
+          <div className="flex flex-col sm:flex-row gap-3 w-full max-w-xs sm:max-w-none sm:w-auto">
             <PostJobButton className="inline-flex items-center justify-center rounded-full bg-orange-500 hover:bg-orange-600 text-white font-semibold px-8 py-3 transition-colors" />
             <Link
               href="/how-it-works"
