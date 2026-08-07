@@ -19,8 +19,6 @@ const links = {
   ],
   Legal: [
     { label: "Pricing & Fees", href: "/legal/pricing" },
-    { label: "Cancellation Policy", href: "/legal/cancellation" },
-    { label: "Refund Policy", href: "/legal/refund" },
     { label: "Privacy Policy", href: "/legal/privacy" },
     { label: "Terms & Conditions", href: "/legal/terms" },
     { label: "Cookie Policy", href: "/legal/cookies" },
