@@ -7,7 +7,7 @@ export default function Contacts() {
       {/* Hero */}
       <section className="relative w-full h-72 md:h-96">
         <Image
-          src="/images/contact_hero.jpeg"
+          src="/images/contact_1_hero.jpeg"
           alt="Contact Us"
           fill
           className="object-cover"
