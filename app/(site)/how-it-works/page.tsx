@@ -1,5 +1,7 @@
 import Image from "next/image";
 import HowItWorksVideos from "@/components/HowItWorksVideos";
+import SignupModal from "@/components/SignupModal";
+import PostJobButton from "@/components/PostJobButton";
 
 export default function HowItWorks() {
   return (
@@ -33,18 +35,11 @@ export default function HowItWorks() {
           Join thousands of people already using Bid2Build.
         </p>
         <div className="flex justify-center gap-4 flex-wrap">
-          <a
-            href="/post-a-job"
-            className="inline-flex items-center justify-center rounded-full bg-white text-orange-600 font-semibold px-8 py-3 hover:bg-orange-50 transition-colors"
-          >
-            Post a Job
-          </a>
-          <a
-            href="/signup"
-            className="inline-flex items-center justify-center rounded-full border-2 border-white text-white font-semibold px-8 py-3 hover:bg-white/10 transition-colors"
-          >
-            Sign Up Free
-          </a>
+          <PostJobButton className="inline-flex items-center justify-center rounded-full bg-white text-orange-600 font-semibold px-8 py-3 hover:bg-orange-50 transition-colors" />
+          <SignupModal
+            triggerLabel="Sign Up Free"
+            triggerClassName="inline-flex items-center justify-center rounded-full border-2 border-white text-white font-semibold px-8 py-3 hover:bg-white/10 transition-colors"
+          />
         </div>
       </section>
     </div>

@@ -1,12 +1,25 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { signUpUser } from "@/app/actions/auth";
 
 type Role = "client" | "contractor" | null;
 
-export default function SignupModal() {
+interface SignupModalProps {
+  triggerClassName?: string;
+  triggerLabel?: string;
+}
+
+export default function SignupModal({
+  triggerClassName = "inline-flex items-center justify-center rounded-full bg-orange-500 hover:bg-orange-600 text-white text-sm font-medium px-5 py-2 transition-colors",
+  triggerLabel = "Sign Up",
+}: SignupModalProps) {
+  const router = useRouter();
   const [open, setOpen] = useState(false);
   const [role, setRole] = useState<Role>(null);
+  const [formError, setFormError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   function handleClose() {
     setOpen(false);
@@ -17,9 +30,9 @@ export default function SignupModal() {
     <>
       <button
         onClick={() => setOpen(true)}
-        className="inline-flex items-center justify-center rounded-full bg-orange-500 hover:bg-orange-600 text-white text-sm font-medium px-5 py-2 transition-colors"
+        className={triggerClassName}
       >
-        Sign Up
+        {triggerLabel}
       </button>
 
       {open && (
@@ -109,14 +122,56 @@ export default function SignupModal() {
                   <h2 className="text-2xl font-bold text-gray-900">Create your account</h2>
                 </div>
 
-                <form className="flex flex-col gap-4" onSubmit={(e) => e.preventDefault()}>
+                <form
+                  className="flex flex-col gap-4"
+                  onSubmit={async (e) => {
+                    e.preventDefault();
+                    const fd = new FormData(e.currentTarget);
+                    const firstName = fd.get("firstName") as string;
+                    const lastName = fd.get("lastName") as string;
+                    const email = fd.get("email") as string;
+                    const password = fd.get("password") as string;
+                    const confirm = fd.get("confirm") as string;
+
+                    if (password !== confirm) {
+                      setFormError("Passwords do not match.");
+                      return;
+                    }
+
+                    setLoading(true);
+                    setFormError("");
+
+                    const phone = fd.get("phone") as string;
+
+                    const result = await signUpUser({
+                      firstName,
+                      lastName,
+                      email,
+                      password,
+                      phone,
+                      role: role!,
+                    });
+
+                    setLoading(false);
+
+                    if (result.error) {
+                      setFormError(result.error);
+                      return;
+                    }
+
+                    handleClose();
+                    router.push(`/verify-otp?email=${encodeURIComponent(email)}`);
+                  }}
+                >
                   <div className="grid grid-cols-2 gap-4">
                     <div className="flex flex-col gap-1.5">
                       <label className="text-sm font-medium text-gray-700" htmlFor="signup-first">First Name</label>
                       <input
                         id="signup-first"
+                        name="firstName"
                         type="text"
                         placeholder="John"
+                        required
                         className="rounded-lg border border-gray-200 px-4 py-2.5 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
                       />
                     </div>
@@ -124,8 +179,10 @@ export default function SignupModal() {
                       <label className="text-sm font-medium text-gray-700" htmlFor="signup-last">Last Name</label>
                       <input
                         id="signup-last"
+                        name="lastName"
                         type="text"
                         placeholder="Doe"
+                        required
                         className="rounded-lg border border-gray-200 px-4 py-2.5 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
                       />
                     </div>
@@ -135,8 +192,22 @@ export default function SignupModal() {
                     <label className="text-sm font-medium text-gray-700" htmlFor="signup-email">Email Address</label>
                     <input
                       id="signup-email"
+                      name="email"
                       type="email"
                       placeholder="you@example.com"
+                      required
+                      className="rounded-lg border border-gray-200 px-4 py-2.5 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                    />
+                  </div>
+
+                  <div className="flex flex-col gap-1.5">
+                    <label className="text-sm font-medium text-gray-700" htmlFor="signup-phone">Cell Phone Number</label>
+                    <input
+                      id="signup-phone"
+                      name="phone"
+                      type="tel"
+                      placeholder="+27 82 000 0000"
+                      required
                       className="rounded-lg border border-gray-200 px-4 py-2.5 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
                     />
                   </div>
@@ -145,8 +216,11 @@ export default function SignupModal() {
                     <label className="text-sm font-medium text-gray-700" htmlFor="signup-password">Password</label>
                     <input
                       id="signup-password"
+                      name="password"
                       type="password"
                       placeholder="••••••••"
+                      required
+                      minLength={8}
                       className="rounded-lg border border-gray-200 px-4 py-2.5 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
                     />
                   </div>
@@ -155,17 +229,24 @@ export default function SignupModal() {
                     <label className="text-sm font-medium text-gray-700" htmlFor="signup-confirm">Confirm Password</label>
                     <input
                       id="signup-confirm"
+                      name="confirm"
                       type="password"
                       placeholder="••••••••"
+                      required
                       className="rounded-lg border border-gray-200 px-4 py-2.5 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
                     />
                   </div>
 
+                  {formError && (
+                    <p className="text-sm text-red-500">{formError}</p>
+                  )}
+
                   <button
                     type="submit"
-                    className="inline-flex items-center justify-center rounded-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 transition-colors mt-1"
+                    disabled={loading}
+                    className="inline-flex items-center justify-center rounded-full bg-orange-500 hover:bg-orange-600 disabled:opacity-60 text-white font-semibold py-3 transition-colors mt-1"
                   >
-                    Create Account
+                    {loading ? "Creating account…" : "Create Account"}
                   </button>
                 </form>
 

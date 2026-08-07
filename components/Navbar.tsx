@@ -11,6 +11,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import LoginModal from "@/components/LoginModal";
 import SignupModal from "@/components/SignupModal";
+import PostJobButton from "@/components/PostJobButton";
 
 const navigation = [
   { name: "Home", href: "/" },
@@ -81,12 +82,7 @@ export default function Navbar() {
           <div className="absolute inset-y-0 right-0 flex items-center gap-3 sm:static sm:inset-auto">
             <LoginModal />
             <SignupModal />
-            <Link
-              href="/post-a-job"
-              className="hidden sm:inline-flex items-center justify-center rounded-full bg-gray-900 hover:bg-gray-800 text-white text-sm font-medium px-5 py-2 transition-colors"
-            >
-              Post a Job
-            </Link>
+            <PostJobButton className="hidden sm:inline-flex items-center justify-center rounded-full bg-gray-900 hover:bg-gray-800 text-white text-sm font-medium px-5 py-2 transition-colors" />
           </div>
         </div>
       </div>
@@ -114,12 +110,7 @@ export default function Navbar() {
             );
           })}
           <div className="pt-2">
-            <Link
-              href="/post-a-job"
-              className="block w-full text-center rounded-full bg-gray-900 hover:bg-gray-800 text-white text-sm font-medium px-5 py-2 transition-colors"
-            >
-              Post a Job
-            </Link>
+            <PostJobButton className="block w-full text-center rounded-full bg-gray-900 hover:bg-gray-800 text-white text-sm font-medium px-5 py-2 transition-colors" />
           </div>
         </div>
       </DisclosurePanel>
