@@ -6,58 +6,42 @@ import { submitContactForm } from "@/app/actions/contact";
 const inputClass =
   "rounded-lg border border-gray-200 px-4 py-2.5 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent";
 
+type Toast = { type: "success" | "error"; message: string };
+
 export default function ContactForm() {
   const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
   const [loading, setLoading] = useState(false);
-  const [success, setSuccess] = useState(false);
-  const [error, setError] = useState("");
+  const [toast, setToast] = useState<Toast | null>(null);
+
+  function showToast(t: Toast) {
+    setToast(t);
+    setTimeout(() => setToast(null), 5000);
+  }
 
   function set(field: string, value: string) {
     setForm((prev) => ({ ...prev, [field]: value }));
-    setSuccess(false);
-    setError("");
   }
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setLoading(true);
-    setError("");
-    setSuccess(false);
 
     const result = await submitContactForm(form);
     setLoading(false);
 
     if (result.error) {
-      setError(result.error);
+      showToast({ type: "error", message: result.error });
     } else {
-      setSuccess(true);
+      showToast({ type: "success", message: "Message sent! We'll get back to you within 24 hours." });
       setForm({ name: "", email: "", subject: "", message: "" });
     }
   }
 
   return (
-    <div className="bg-white rounded-2xl shadow-sm p-8">
-      <h2 className="text-2xl font-semibold text-gray-900 mb-6">Send us a message</h2>
+    <>
+      <div className="bg-white rounded-2xl shadow-sm p-8">
+        <h2 className="text-2xl font-semibold text-gray-900 mb-6">Send us a message</h2>
 
-      {success ? (
-        <div className="flex flex-col items-center justify-center py-10 text-center gap-4">
-          <div className="w-14 h-14 rounded-full bg-green-100 flex items-center justify-center">
-            <svg className="w-7 h-7 text-green-600" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-          </div>
-          <div>
-            <p className="text-lg font-semibold text-gray-900">Message sent!</p>
-            <p className="text-sm text-gray-500 mt-1">We&apos;ll get back to you within 24 hours.</p>
-          </div>
-          <button
-            onClick={() => setSuccess(false)}
-            className="text-sm text-orange-500 hover:underline mt-2"
-          >
-            Send another message
-          </button>
-        </div>
-      ) : (
         <form onSubmit={handleSubmit} className="flex flex-col gap-5">
           <div className="flex flex-col gap-1.5">
             <label className="text-sm font-medium text-gray-700" htmlFor="name">Full Name</label>
@@ -111,10 +95,6 @@ export default function ContactForm() {
             />
           </div>
 
-          {error && (
-            <p className="text-sm text-red-500 bg-red-50 border border-red-200 rounded-xl px-4 py-3">{error}</p>
-          )}
-
           <button
             type="submit"
             disabled={loading}
@@ -123,7 +103,39 @@ export default function ContactForm() {
             {loading ? "Sending…" : "Send Message"}
           </button>
         </form>
+      </div>
+
+      {/* Toast */}
+      {toast && (
+        <div
+          className={`fixed bottom-6 right-6 z-[200] flex items-start gap-3 px-5 py-4 rounded-2xl shadow-xl text-sm max-w-sm text-white transition-all ${
+            toast.type === "success" ? "bg-gray-900" : "bg-red-600"
+          }`}
+        >
+          {toast.type === "success" ? (
+            <svg className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          ) : (
+            <svg className="w-5 h-5 text-red-200 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
+            </svg>
+          )}
+          <div className="flex-1">
+            <p className="font-medium mb-0.5">
+              {toast.type === "success" ? "Message sent!" : "Failed to send"}
+            </p>
+            <p className={`text-xs leading-relaxed ${toast.type === "success" ? "text-gray-400" : "text-red-200"}`}>
+              {toast.message}
+            </p>
+          </div>
+          <button onClick={() => setToast(null)} className="text-white/50 hover:text-white flex-shrink-0 ml-1">
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
       )}
-    </div>
+    </>
   );
 }
