@@ -121,7 +121,7 @@ export default function Contacts() {
               </div>
               <div>
                 <p className="text-sm font-semibold text-gray-900">Phone</p>
-                <p className="text-sm text-gray-600">+27 (0) 11 000 0000</p>
+                <p className="text-sm text-gray-600">+27 75 001 0317</p>
               </div>
             </div>
 
