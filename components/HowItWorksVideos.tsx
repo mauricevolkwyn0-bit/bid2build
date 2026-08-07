@@ -21,10 +21,10 @@ export default function HowItWorksVideos() {
   const videos = activeRole === "client" ? clientVideos : contractorVideos;
 
   return (
-    <section className="bg-white py-20 px-4">
+    <section className="bg-white py-10 sm:py-20 px-4">
       <div className="max-w-6xl mx-auto">
         {/* Toggle */}
-        <div className="flex justify-center mb-12">
+        <div className="flex justify-center mb-8 sm:mb-12">
           <div className="inline-flex rounded-full bg-gray-100 p-1">
             <button
               onClick={() => setActiveRole("client")}
