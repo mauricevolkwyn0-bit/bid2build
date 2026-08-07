@@ -27,7 +27,7 @@ export default function Navbar() {
   const pathname = usePathname();
 
   return (
-    <Disclosure as="nav" className="bg-gray-100 shadow-sm">
+    <Disclosure as="nav" className="sticky top-0 z-40 bg-gray-100 shadow-sm">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="relative flex h-16 sm:h-20 items-center justify-between">
           {/* Mobile menu button */}
@@ -79,13 +79,14 @@ export default function Navbar() {
             </div>
           </div>
 
-          {/* Right side actions */}
+          {/* Right side actions — desktop only */}
           <div className="absolute inset-y-0 right-0 flex items-center gap-2 sm:gap-3 sm:static sm:inset-auto">
-            {/* Login: desktop only */}
             <span className="hidden sm:flex">
               <LoginModal />
             </span>
-            <SignupModal />
+            <span className="hidden sm:flex">
+              <SignupModal />
+            </span>
             <PostJobButton className="hidden sm:inline-flex items-center justify-center rounded-full bg-gray-900 hover:bg-gray-800 text-white text-sm font-medium px-5 py-2 transition-colors" />
           </div>
         </div>
@@ -116,6 +117,7 @@ export default function Navbar() {
 
           <div className="pt-3 border-t border-gray-200 flex flex-col gap-2">
             <LoginModal />
+            <SignupModal triggerClassName="block w-full text-center rounded-full bg-orange-500 hover:bg-orange-600 text-white text-sm font-medium px-5 py-2.5 transition-colors" />
             <PostJobButton className="block w-full text-center rounded-full bg-gray-900 hover:bg-gray-800 text-white text-sm font-medium px-5 py-2.5 transition-colors" />
           </div>
         </div>
