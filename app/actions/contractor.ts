@@ -11,8 +11,11 @@ export async function updateContractorProfile(
     entityType: string;
     companyName: string;
     companyRegNumber: string;
+    taxNumber: string;
     isVatRegistered: boolean;
     vatNumber: string;
+    isNhbrcRegistered: boolean;
+    nhbrcLevel: string;
   }
 ) {
   const supabase = await createClient();
@@ -35,8 +38,11 @@ export async function updateContractorProfile(
       entity_type: data.entityType,
       company_name: data.companyName || null,
       company_registration_number: data.companyRegNumber || null,
+      tax_number: data.taxNumber || null,
       is_vat_registered: data.isVatRegistered,
       vat_number: data.vatNumber || null,
+      is_nhbrc_registered: data.isNhbrcRegistered,
+      nhbrc_level: data.isNhbrcRegistered ? (data.nhbrcLevel || null) : null,
       updated_at: new Date().toISOString(),
     })
     .eq("user_id", userId);

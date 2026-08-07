@@ -54,8 +54,11 @@ export default async function ContractorProfilePage() {
           entityType: profile?.entity_type ?? "individual",
           companyName: profile?.company_name ?? "",
           companyRegNumber: profile?.company_registration_number ?? "",
+          taxNumber: profile?.tax_number ?? "",
           isVatRegistered: profile?.is_vat_registered ?? false,
           vatNumber: profile?.vat_number ?? "",
+          isNhbrcRegistered: profile?.is_nhbrc_registered ?? false,
+          nhbrcLevel: profile?.nhbrc_level ?? "",
         }}
       />
     </div>

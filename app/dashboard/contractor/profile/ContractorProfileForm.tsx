@@ -10,8 +10,11 @@ interface ProfileData {
   entityType: string;
   companyName: string;
   companyRegNumber: string;
+  taxNumber: string;
   isVatRegistered: boolean;
   vatNumber: string;
+  isNhbrcRegistered: boolean;
+  nhbrcLevel: string;
 }
 
 interface Props {
@@ -131,6 +134,18 @@ export default function ContractorProfileForm({ userId, initialData }: Props) {
             </>
           )}
 
+          {/* Tax Number */}
+          <div className="sm:col-span-2">
+            <label className={labelClass}>Tax Number (Income Tax Reference)</label>
+            <input
+              type="text"
+              value={data.taxNumber}
+              onChange={(e) => set("taxNumber", e.target.value)}
+              className={inputClass}
+              placeholder="e.g. 1234567890"
+            />
+          </div>
+
           {/* VAT */}
           <div className="sm:col-span-2">
             <label className="flex items-center gap-3 cursor-pointer">
@@ -158,6 +173,45 @@ export default function ContractorProfileForm({ userId, initialData }: Props) {
                 className={inputClass}
                 placeholder="e.g. 4123456789"
               />
+            </div>
+          )}
+
+          {/* NHBRC */}
+          <div className="sm:col-span-2 border-t border-gray-100 pt-4 mt-1">
+            <label className="flex items-center gap-3 cursor-pointer">
+              <div
+                onClick={() => set("isNhbrcRegistered", !data.isNhbrcRegistered)}
+                className={`w-11 h-6 rounded-full transition-colors flex-shrink-0 cursor-pointer ${
+                  data.isNhbrcRegistered ? "bg-orange-500" : "bg-gray-200"
+                }`}
+              >
+                <div className={`w-4 h-4 bg-white rounded-full mt-1 transition-transform ${
+                  data.isNhbrcRegistered ? "translate-x-6" : "translate-x-1"
+                }`} />
+              </div>
+              <span className="text-sm font-medium text-gray-700">NHBRC Registered</span>
+            </label>
+          </div>
+
+          {data.isNhbrcRegistered && (
+            <div className="sm:col-span-2">
+              <label className={labelClass}>NHBRC Grade</label>
+              <select
+                value={data.nhbrcLevel}
+                onChange={(e) => set("nhbrcLevel", e.target.value)}
+                className={inputClass}
+              >
+                <option value="">Select NHBRC grade…</option>
+                <option value="grade_1">Grade 1 — up to R500,000</option>
+                <option value="grade_2">Grade 2 — up to R1.5 million</option>
+                <option value="grade_3">Grade 3 — up to R3 million</option>
+                <option value="grade_4">Grade 4 — up to R6 million</option>
+                <option value="grade_5">Grade 5 — up to R13 million</option>
+                <option value="grade_6">Grade 6 — up to R40 million</option>
+                <option value="grade_7">Grade 7 — up to R130 million</option>
+                <option value="grade_8">Grade 8 — up to R260 million</option>
+                <option value="grade_9">Grade 9 — above R260 million</option>
+              </select>
             </div>
           )}
         </div>
