@@ -64,10 +64,11 @@ export default async function MyBidsPage() {
               bid_amount: number;
               status: string;
               created_at: string;
-              jobs: { title: string; city: string | null; province: string | null } | null;
+              jobs: { title: string; city: string | null; province: string | null }[];
             }) => {
               const status = statusConfig[bid.status] ?? { label: bid.status, className: "bg-gray-100 text-gray-600" };
-              const location = bid.jobs?.city ?? bid.jobs?.province ?? "—";
+              const job = bid.jobs?.[0];
+              const location = job?.city ?? job?.province ?? "—";
               return (
                 <div key={bid.id} className="flex items-center justify-between gap-4 p-6">
                   <div className="flex-1 min-w-0">
@@ -77,7 +78,7 @@ export default async function MyBidsPage() {
                       </span>
                     </div>
                     <h3 className="text-base font-semibold text-gray-900 truncate">
-                      {bid.jobs?.title ?? "Job removed"}
+                      {job?.title ?? "Job removed"}
                     </h3>
                     <div className="flex items-center gap-3 mt-1 text-sm text-gray-500 flex-wrap">
                       <span className="flex items-center gap-1">

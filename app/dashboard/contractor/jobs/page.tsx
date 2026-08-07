@@ -87,15 +87,15 @@ export default async function BrowseJobsPage() {
             city: string | null;
             province: string | null;
             created_at: string;
-            job_categories: { name: string } | null;
+            job_categories: { name: string }[];
           }) => (
             <div key={job.id} className="bg-white rounded-2xl shadow-sm p-6 hover:shadow-md transition-shadow">
               <div className="flex items-start justify-between gap-4">
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 mb-2 flex-wrap">
-                    {job.job_categories && (
+                    {job.job_categories[0] && (
                       <span className="text-xs px-2.5 py-1 bg-orange-100 text-orange-600 rounded-full font-medium">
-                        {(job.job_categories as { name: string }).name}
+                        {job.job_categories[0].name}
                       </span>
                     )}
                     <span className="text-xs text-gray-400">{timeAgo(job.created_at)}</span>
