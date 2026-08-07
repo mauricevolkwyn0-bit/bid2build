@@ -1,5 +1,6 @@
 import Image from "next/image";
 import OfficeMapWrapper from "@/components/OfficeMapWrapper";
+import ContactForm from "@/components/ContactForm";
 
 export default function Contacts() {
   return (
@@ -26,67 +27,7 @@ export default function Contacts() {
       {/* Content */}
       <section className="py-20 px-8 max-w-5xl mx-auto w-full grid grid-cols-1 md:grid-cols-2 gap-16">
         {/* Contact Form */}
-        <div className="bg-white rounded-2xl shadow-sm p-8">
-          <h2 className="text-2xl font-semibold text-gray-900 mb-6">
-            Send us a message
-          </h2>
-          <form className="flex flex-col gap-5">
-            <div className="flex flex-col gap-1.5">
-              <label className="text-sm font-medium text-gray-700" htmlFor="name">
-                Full Name
-              </label>
-              <input
-                id="name"
-                type="text"
-                placeholder="John Doe"
-                className="rounded-lg border border-gray-200 px-4 py-2.5 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
-              />
-            </div>
-
-            <div className="flex flex-col gap-1.5">
-              <label className="text-sm font-medium text-gray-700" htmlFor="email">
-                Email Address
-              </label>
-              <input
-                id="email"
-                type="email"
-                placeholder="john@example.com"
-                className="rounded-lg border border-gray-200 px-4 py-2.5 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
-              />
-            </div>
-
-            <div className="flex flex-col gap-1.5">
-              <label className="text-sm font-medium text-gray-700" htmlFor="subject">
-                Subject
-              </label>
-              <input
-                id="subject"
-                type="text"
-                placeholder="How can we help?"
-                className="rounded-lg border border-gray-200 px-4 py-2.5 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
-              />
-            </div>
-
-            <div className="flex flex-col gap-1.5">
-              <label className="text-sm font-medium text-gray-700" htmlFor="message">
-                Message
-              </label>
-              <textarea
-                id="message"
-                rows={5}
-                placeholder="Tell us more..."
-                className="rounded-lg border border-gray-200 px-4 py-2.5 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent resize-none"
-              />
-            </div>
-
-            <button
-              type="submit"
-              className="inline-flex items-center justify-center rounded-full bg-orange-500 hover:bg-orange-600 text-white font-semibold px-8 py-3 transition-colors mt-2"
-            >
-              Send Message
-            </button>
-          </form>
-        </div>
+        <ContactForm />
 
         {/* Contact Info */}
         <div className="flex flex-col gap-10">
