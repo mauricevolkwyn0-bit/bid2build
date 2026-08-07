@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import HowItWorksSection from "@/components/HowItWorksSection";
 import PostJobButton from "@/components/PostJobButton";
+import FindWorkButton from "@/components/FindWorkButton";
 
 export default function Home() {
   return (
@@ -148,12 +149,7 @@ export default function Home() {
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <PostJobButton className="inline-flex items-center justify-center rounded-full bg-white text-orange-600 font-semibold px-8 py-3 hover:bg-orange-50 transition-colors w-full sm:w-auto" />
-            <a
-              href="/signup?role=contractor"
-              className="inline-flex items-center justify-center rounded-full bg-gray-900 text-white font-semibold px-8 py-3 hover:bg-gray-800 transition-colors w-full sm:w-auto"
-            >
-              Find Work
-            </a>
+            <FindWorkButton className="inline-flex items-center justify-center rounded-full bg-gray-900 text-white font-semibold px-8 py-3 hover:bg-gray-800 transition-colors w-full sm:w-auto" />
           </div>
 
           {/* Trust line */}
