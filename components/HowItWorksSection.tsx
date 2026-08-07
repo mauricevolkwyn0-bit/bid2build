@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import SignupModal from "@/components/SignupModal";
 
 const clientSteps = [
   {
@@ -156,12 +157,11 @@ export default function HowItWorksSection() {
 
         {/* CTA */}
         <div className="flex justify-center mt-14">
-          <a
-            href={activeRole === "client" ? "/signup?role=client" : "/signup?role=contractor"}
-            className="inline-flex items-center justify-center rounded-full bg-orange-500 hover:bg-orange-600 text-white font-semibold px-8 py-3 transition-colors"
-          >
-            Get Started as a {activeRole === "client" ? "Client" : "Contractor"}
-          </a>
+          <SignupModal
+            defaultRole={activeRole}
+            triggerLabel={`Get Started as a ${activeRole === "client" ? "Client" : "Contractor"}`}
+            triggerClassName="inline-flex items-center justify-center rounded-full bg-orange-500 hover:bg-orange-600 text-white font-semibold px-8 py-3 transition-colors"
+          />
         </div>
       </div>
     </section>

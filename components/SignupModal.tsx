@@ -9,21 +9,23 @@ type Role = "client" | "contractor" | null;
 interface SignupModalProps {
   triggerClassName?: string;
   triggerLabel?: string;
+  defaultRole?: Role;
 }
 
 export default function SignupModal({
   triggerClassName = "inline-flex items-center justify-center rounded-full bg-orange-500 hover:bg-orange-600 text-white text-sm font-medium px-5 py-2 transition-colors",
   triggerLabel = "Sign Up",
+  defaultRole,
 }: SignupModalProps) {
   const router = useRouter();
   const [open, setOpen] = useState(false);
-  const [role, setRole] = useState<Role>(null);
+  const [role, setRole] = useState<Role>(defaultRole ?? null);
   const [formError, setFormError] = useState("");
   const [loading, setLoading] = useState(false);
 
   function handleClose() {
     setOpen(false);
-    setRole(null);
+    setRole(defaultRole ?? null);
   }
 
   return (
