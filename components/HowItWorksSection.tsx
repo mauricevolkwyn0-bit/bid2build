@@ -93,10 +93,10 @@ export default function HowItWorksSection() {
   const steps = activeRole === "client" ? clientSteps : contractorSteps;
 
   return (
-    <section className="bg-white py-20 px-4">
+    <section className="bg-white py-12 sm:py-20 px-4">
       <div className="max-w-5xl mx-auto">
         {/* Heading */}
-        <div className="text-center mb-10">
+        <div className="text-center mb-8 sm:mb-10">
           <h2 className="text-3xl font-bold text-gray-900 mb-3">How It Works</h2>
           <p className="text-gray-500 max-w-xl mx-auto">
             Whether you're hiring or looking for work, Bid2Build makes it simple.
@@ -104,7 +104,7 @@ export default function HowItWorksSection() {
         </div>
 
         {/* Toggle */}
-        <div className="flex justify-center mb-12">
+        <div className="flex justify-center mb-8 sm:mb-12">
           <div className="inline-flex rounded-full bg-gray-100 p-1">
             <button
               onClick={() => setActiveRole("client")}
