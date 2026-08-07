@@ -38,6 +38,8 @@ function getComponent(
   return components.find((c) => c.types.includes(type))?.[nameType] ?? "";
 }
 
+const API_KEY = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
+
 export default function AddressAutocomplete({
   value,
   onChange,
@@ -72,9 +74,21 @@ export default function AddressAutocomplete({
     onChange(addressLine1);
   }
 
+  if (!API_KEY) {
+    return (
+      <input
+        type="text"
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        className={className}
+        placeholder={placeholder}
+      />
+    );
+  }
+
   return (
     <Autocomplete
-      apiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}
+      apiKey={API_KEY}
       onPlaceSelected={handlePlace}
       options={{
         types: ["address"],
