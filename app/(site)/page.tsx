@@ -10,7 +10,7 @@ export default function Home() {
       {/* Hero */}
       <section className="relative w-full h-[600px]">
         <Image
-          src="/images/hero_image.jpeg"
+          src="/images/home_hero.jpeg"
           alt="Bid2Build hero"
           fill
           className="object-cover"
