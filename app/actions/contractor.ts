@@ -8,6 +8,11 @@ export async function updateContractorProfile(
     firstName: string;
     lastName: string;
     phone: string;
+    addressLine1: string;
+    addressLine2: string;
+    city: string;
+    province: string;
+    postalCode: string;
     entityType: string;
     companyName: string;
     companyRegNumber: string;
@@ -35,6 +40,11 @@ export async function updateContractorProfile(
     .update({
       first_name: data.firstName,
       last_name: data.lastName,
+      address_line_1: data.addressLine1 || null,
+      address_line_2: data.addressLine2 || null,
+      city: data.city || null,
+      province: data.province || null,
+      postal_code: data.postalCode || null,
       entity_type: data.entityType,
       company_name: data.companyName || null,
       company_registration_number: data.companyRegNumber || null,

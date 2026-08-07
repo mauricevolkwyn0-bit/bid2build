@@ -7,6 +7,11 @@ interface ProfileData {
   firstName: string;
   lastName: string;
   phone: string;
+  addressLine1: string;
+  addressLine2: string;
+  city: string;
+  province: string;
+  postalCode: string;
   entityType: string;
   companyName: string;
   companyRegNumber: string;
@@ -87,6 +92,65 @@ export default function ContractorProfileForm({ userId, initialData }: Props) {
               className={inputClass}
               placeholder="+27 82 000 0000"
             />
+          </div>
+          <div className="sm:col-span-2">
+            <label className={labelClass}>Street Address</label>
+            <input
+              type="text"
+              value={data.addressLine1}
+              onChange={(e) => set("addressLine1", e.target.value)}
+              className={inputClass}
+              placeholder="e.g. 10 Horridus Place"
+            />
+          </div>
+          <div className="sm:col-span-2">
+            <label className={labelClass}>Suburb / Unit (optional)</label>
+            <input
+              type="text"
+              value={data.addressLine2}
+              onChange={(e) => set("addressLine2", e.target.value)}
+              className={inputClass}
+              placeholder="e.g. Montana Park"
+            />
+          </div>
+          <div>
+            <label className={labelClass}>City</label>
+            <input
+              type="text"
+              value={data.city}
+              onChange={(e) => set("city", e.target.value)}
+              className={inputClass}
+              placeholder="e.g. Pretoria"
+            />
+          </div>
+          <div>
+            <label className={labelClass}>Postal Code</label>
+            <input
+              type="text"
+              value={data.postalCode}
+              onChange={(e) => set("postalCode", e.target.value)}
+              className={inputClass}
+              placeholder="e.g. 0182"
+            />
+          </div>
+          <div className="sm:col-span-2">
+            <label className={labelClass}>Province</label>
+            <select
+              value={data.province}
+              onChange={(e) => set("province", e.target.value)}
+              className={inputClass}
+            >
+              <option value="">Select province…</option>
+              <option value="gauteng">Gauteng</option>
+              <option value="western_cape">Western Cape</option>
+              <option value="kwazulu_natal">KwaZulu-Natal</option>
+              <option value="eastern_cape">Eastern Cape</option>
+              <option value="limpopo">Limpopo</option>
+              <option value="mpumalanga">Mpumalanga</option>
+              <option value="north_west">North West</option>
+              <option value="northern_cape">Northern Cape</option>
+              <option value="free_state">Free State</option>
+            </select>
           </div>
         </div>
       </div>
