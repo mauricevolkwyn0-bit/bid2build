@@ -148,7 +148,7 @@ export async function initiateBidPayment(data: {
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: new URLSearchParams({ ...params, signature }).toString(),
     });
-    if (!res.ok) return { error: `PayFast error: ${await res.text()}` };
+    if (!res.ok) return { error: `PayFast error (merchant_id=${merchantId}, sandbox=${sandbox}, url=${baseUrl}): ${await res.text()}` };
     const { uuid } = await res.json();
     return { uuid, sandbox };
   } catch (e) {
