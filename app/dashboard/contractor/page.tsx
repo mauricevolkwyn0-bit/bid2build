@@ -250,13 +250,8 @@ export default async function ContractorDashboard() {
 
           {recentBids.length > 0 ? (
             <div className="flex flex-col divide-y divide-gray-100">
-              {recentBids.map((bid: {
-                id: string;
-                bid_amount: number;
-                status: string;
-                created_at: string;
-                jobs: { id: string; title: string; city: string | null; province: string | null } | null;
-              }) => {
+              {recentBids.map((bid) => {
+                const job = Array.isArray(bid.jobs) ? bid.jobs[0] : null;
                 const status = bidStatusConfig[bid.status] ?? { label: bid.status, className: "bg-gray-100 text-gray-600" };
                 return (
                   <div key={bid.id} className="flex items-center justify-between py-4 gap-4">
@@ -267,14 +262,14 @@ export default async function ContractorDashboard() {
                         </span>
                         <span className="text-xs text-gray-400">{timeAgo(bid.created_at)}</span>
                       </div>
-                      <p className="text-sm font-semibold text-gray-900 truncate">{bid.jobs?.title ?? "—"}</p>
+                      <p className="text-sm font-semibold text-gray-900 truncate">{job?.title ?? "—"}</p>
                       <p className="text-xs text-gray-500 mt-0.5">
                         Bid: R{bid.bid_amount.toLocaleString("en-ZA")}
                       </p>
                     </div>
-                    {bid.jobs?.id && (
+                    {job?.id && (
                       <Link
-                        href={`/dashboard/contractor/jobs/${bid.jobs.id}`}
+                        href={`/dashboard/contractor/jobs/${job.id}`}
                         className="flex-shrink-0 text-xs font-semibold text-orange-500 hover:text-orange-600 flex items-center gap-1"
                       >
                         View
