@@ -9,7 +9,7 @@ const labelClass = "text-sm font-medium text-gray-700 mb-1.5 block";
 
 declare global {
   interface Window {
-    payfast_do_onsite_payment: (
+    payfast_do_onsite_payment?: (
       opts: { uuid: string },
       callback: (result: { payment_status: string }) => void
     ) => void;
@@ -63,7 +63,9 @@ export default function BidForm({ jobId }: { jobId: string }) {
   }
 
   function openPopup(uuid: string) {
-    window.payfast_do_onsite_payment({ uuid }, (result) => {
+    const doPay = window.payfast_do_onsite_payment;
+    if (!doPay) return;
+    doPay({ uuid }, (result) => {
       if (result.payment_status === "COMPLETE") {
         setSuccess(true);
       } else {
