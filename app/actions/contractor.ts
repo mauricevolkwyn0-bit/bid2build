@@ -147,25 +147,7 @@ export async function initiateBidPayment(data: {
     : paramStr;
   const signature = crypto.createHash("md5").update(toHash).digest("hex");
 
-  try {
-    const body = `${paramStr}&signature=${signature}`;
-    const res = await fetch(`${baseUrl}/onsite/process`, {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body,
-    });
-    if (!res.ok) {
-      const text = await res.text();
-      const errMsg = text.match(/<span class="err-msg">([\s\S]*?)<\/span>/)?.[1]?.replace(/<[^>]+>/g, "").trim()
-        ?? text.match(/<div class="error-block__message">([\s\S]*?)<\/div>/)?.[1]?.replace(/<[^>]+>/g, "").trim()
-        ?? text.substring(0, 400);
-      return { error: `PayFast: ${errMsg}` };
-    }
-    const { uuid } = await res.json();
-    return { uuid, sandbox };
-  } catch (e) {
-    return { error: `Could not connect to PayFast: ${e instanceof Error ? e.message : String(e)}` };
-  }
+  return { paramStr, signature, sandbox, baseUrl };
 }
 
 export async function submitBid(data: {

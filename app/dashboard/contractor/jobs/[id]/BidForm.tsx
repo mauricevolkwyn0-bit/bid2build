@@ -48,12 +48,36 @@ export default function BidForm({ jobId }: { jobId: string }) {
       return;
     }
 
-    const { uuid, sandbox } = result as { uuid: string; sandbox: boolean };
+    const { paramStr, signature, sandbox, baseUrl } = result as {
+      paramStr: string; signature: string; sandbox: boolean; baseUrl: string;
+    };
+
+    let uuid: string;
+    try {
+      const pfRes = await fetch(`${baseUrl}/onsite/process`, {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: `${paramStr}&signature=${signature}`,
+      });
+      if (!pfRes.ok) {
+        const text = await pfRes.text();
+        const errMsg = text.match(/<span class="err-msg">([\s\S]*?)<\/span>/)?.[1]?.replace(/<[^>]+>/g, "").trim()
+          ?? text.match(/<div class="error-block__message">([\s\S]*?)<\/div>/)?.[1]?.replace(/<[^>]+>/g, "").trim()
+          ?? text.substring(0, 400);
+        setError(`PayFast: ${errMsg}`);
+        return;
+      }
+      const json = await pfRes.json();
+      uuid = json.uuid;
+    } catch (e) {
+      setError(`Could not connect to PayFast: ${e instanceof Error ? e.message : String(e)}`);
+      return;
+    }
+
     const src = sandbox
       ? "https://sandbox.payfast.co.za/onsite/engine.js"
       : "https://www.payfast.co.za/onsite/engine.js";
 
-    // If script already loaded, open popup immediately
     if (typeof window.payfast_do_onsite_payment === "function") {
       openPopup(uuid);
     } else {
