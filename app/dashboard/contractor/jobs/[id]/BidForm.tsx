@@ -54,7 +54,7 @@ export default function BidForm({ jobId }: { jobId: string }) {
       : "https://www.payfast.co.za/onsite/engine.js";
 
     // If script already loaded, open popup immediately
-    if (window.payfast_do_onsite_payment) {
+    if (typeof window.payfast_do_onsite_payment === "function") {
       openPopup(uuid);
     } else {
       setScriptSrc(src);
