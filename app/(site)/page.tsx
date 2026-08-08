@@ -61,11 +61,13 @@ export default function Home() {
       {/* ── About Us ── */}
       <section className="bg-zinc-50 py-12 sm:py-20 px-4">
         <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-12 items-center">
-          {/* Placeholder image */}
-          <div className="w-full aspect-[4/3] rounded-2xl bg-gray-200 flex items-center justify-center overflow-hidden">
-            <svg className="w-16 h-16 sm:w-20 sm:h-20 text-gray-400" fill="none" stroke="currentColor" strokeWidth={1.2} viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5M7.5 3.75h.008v.008H7.5V3.75zm0 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
-            </svg>
+          <div className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden shadow-lg">
+            <Image
+              src="/images/about_image.jpeg"
+              alt="About Bid2Build"
+              fill
+              className="object-cover"
+            />
           </div>
 
           {/* Text */}

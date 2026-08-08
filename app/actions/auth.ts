@@ -106,29 +106,30 @@ export async function verifyOtp(email: string, token: string) {
     const meta = user.user_metadata;
     const role = meta.role as "client" | "contractor";
 
-    const { error: userError } = await supabase.from("users").insert({
+    // Upsert so a retry after a failed signup doesn't blow up on duplicate key
+    await supabase.from("users").upsert({
       id: user.id,
       email: user.email,
       role,
-      cellphone_number: meta.phone ?? "",
+      // Fall back to a unique placeholder so NOT NULL + UNIQUE never blocks signup
+      cellphone_number: meta.phone || `pending_${user.id}`,
       password_hash: "SUPABASE_AUTH_MANAGED",
-    });
+      updated_at: new Date().toISOString(),
+    }, { onConflict: "id" });
 
-    if (!userError) {
-      if (role === "client") {
-        await supabase.from("client_profiles").insert({
-          user_id: user.id,
-          first_name: meta.first_name,
-          last_name: meta.last_name,
-        });
-      } else {
-        await supabase.from("contractor_profiles").insert({
-          user_id: user.id,
-          first_name: meta.first_name,
-          last_name: meta.last_name,
-          entity_type: "individual",
-        });
-      }
+    if (role === "client") {
+      await supabase.from("client_profiles").upsert({
+        user_id: user.id,
+        first_name: meta.first_name ?? "",
+        last_name: meta.last_name ?? "",
+      }, { onConflict: "user_id" });
+    } else {
+      await supabase.from("contractor_profiles").upsert({
+        user_id: user.id,
+        first_name: meta.first_name ?? "",
+        last_name: meta.last_name ?? "",
+        entity_type: "individual",
+      }, { onConflict: "user_id" });
     }
   }
 

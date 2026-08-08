@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useCallback, useRef } from "react";
 import { createJob } from "@/app/actions/client";
+import { createClient } from "@/lib/supabase/client";
 
 const inputClass = "rounded-lg border border-gray-200 px-4 py-2.5 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent w-full";
 const labelClass = "text-sm font-medium text-gray-700 mb-1.5 block";
@@ -26,9 +27,40 @@ export default function PostJobForm({ categories }: { categories: Category[] }) 
     desiredStartDate: "",
     timeframeDays: "",
   });
+  const [images, setImages] = useState<File[]>([]);
+  const [imagePreviews, setImagePreviews] = useState<string[]>([]);
+  const [dragActive, setDragActive] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
+
+  const addFiles = useCallback((files: FileList | File[]) => {
+    const allowed = Array.from(files).filter((f) => f.type.startsWith("image/"));
+    if (!allowed.length) return;
+    setImages((prev) => {
+      const merged = [...prev, ...allowed].slice(0, 8);
+      return merged;
+    });
+    setImagePreviews((prev) => {
+      const urls = allowed.map((f) => URL.createObjectURL(f));
+      return [...prev, ...urls].slice(0, 8);
+    });
+  }, []);
+
+  function removeImage(idx: number) {
+    setImages((prev) => prev.filter((_, i) => i !== idx));
+    setImagePreviews((prev) => {
+      URL.revokeObjectURL(prev[idx]);
+      return prev.filter((_, i) => i !== idx);
+    });
+  }
+
+  function handleDrop(e: React.DragEvent) {
+    e.preventDefault();
+    setDragActive(false);
+    addFiles(e.dataTransfer.files);
+  }
 
   function set(field: string, value: string) {
     setForm((prev) => ({ ...prev, [field]: value }));
@@ -41,13 +73,35 @@ export default function PostJobForm({ categories }: { categories: Category[] }) 
     setError("");
     setSuccess(false);
 
-    const result = await createJob(form);
+    let imageUrls: string[] = [];
+    if (images.length > 0) {
+      const supabase = createClient();
+      for (const file of images) {
+        const ext = file.name.split(".").pop();
+        const path = `${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;
+        const { data, error: uploadError } = await supabase.storage
+          .from("job-images")
+          .upload(path, file, { cacheControl: "3600", upsert: false });
+        if (uploadError) {
+          setSaving(false);
+          setError(`Image upload failed: ${uploadError.message}`);
+          return;
+        }
+        const { data: { publicUrl } } = supabase.storage.from("job-images").getPublicUrl(data.path);
+        imageUrls.push(publicUrl);
+      }
+    }
+
+    const result = await createJob({ ...form, imageUrls });
     setSaving(false);
 
     if (result.error) {
       setError(result.error);
     } else {
       setSuccess(true);
+      imagePreviews.forEach((url) => URL.revokeObjectURL(url));
+      setImages([]);
+      setImagePreviews([]);
       setForm({
         title: "", description: "", categoryId: "", budgetMin: "",
         budgetMax: "", locationAddress: "", city: "", province: "",
@@ -98,6 +152,57 @@ export default function PostJobForm({ categories }: { categories: Category[] }) 
               className={`${inputClass} resize-none`}
               required
             />
+          </div>
+
+          <div>
+            <label className={labelClass}>Photos <span className="text-gray-400 font-normal">(optional, up to 8)</span></label>
+            <div
+              onDragOver={(e) => { e.preventDefault(); setDragActive(true); }}
+              onDragLeave={() => setDragActive(false)}
+              onDrop={handleDrop}
+              onClick={() => fileInputRef.current?.click()}
+              className={`relative flex flex-col items-center justify-center gap-2 rounded-xl border-2 border-dashed cursor-pointer transition-colors py-8 px-4 ${
+                dragActive
+                  ? "border-orange-400 bg-orange-50"
+                  : "border-gray-200 bg-gray-50 hover:border-orange-300 hover:bg-orange-50/40"
+              }`}
+            >
+              <svg className="w-8 h-8 text-gray-300" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
+              </svg>
+              <p className="text-sm text-gray-500">
+                <span className="font-medium text-orange-500">Click to upload</span> or drag and drop
+              </p>
+              <p className="text-xs text-gray-400">PNG, JPG, WEBP up to 10 MB each</p>
+              <input
+                ref={fileInputRef}
+                type="file"
+                accept="image/*"
+                multiple
+                className="hidden"
+                onChange={(e) => e.target.files && addFiles(e.target.files)}
+              />
+            </div>
+
+            {imagePreviews.length > 0 && (
+              <div className="mt-3 grid grid-cols-4 gap-2">
+                {imagePreviews.map((src, idx) => (
+                  <div key={idx} className="relative group aspect-square rounded-lg overflow-hidden border border-gray-200">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={src} alt="" className="w-full h-full object-cover" />
+                    <button
+                      type="button"
+                      onClick={() => removeImage(idx)}
+                      className="absolute top-1 right-1 bg-black/60 hover:bg-black/80 text-white rounded-full w-5 h-5 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+                    >
+                      <svg className="w-3 h-3" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                      </svg>
+                    </button>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         </div>
       </div>

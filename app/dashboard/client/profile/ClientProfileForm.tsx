@@ -3,6 +3,11 @@
 import { useState } from "react";
 import { updateClientProfile } from "@/app/actions/client";
 
+const SA_PROVINCES = [
+  "Gauteng", "Western Cape", "KwaZulu-Natal", "Eastern Cape",
+  "Limpopo", "Mpumalanga", "North West", "Free State", "Northern Cape",
+];
+
 interface ProfileData {
   firstName: string;
   lastName: string;
@@ -13,6 +18,11 @@ interface ProfileData {
   isVatRegistered: boolean;
   vatNumber: string;
   taxNumber: string;
+  streetAddress: string;
+  suburb: string;
+  city: string;
+  province: string;
+  postalCode: string;
 }
 
 const inputClass = "rounded-lg border border-gray-200 px-4 py-2.5 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent w-full";
@@ -75,6 +85,29 @@ export default function ClientProfileForm({ userId, initialData }: { userId: str
           <div className="sm:col-span-2">
             <label className={labelClass}>Tax Number</label>
             <input type="text" value={data.taxNumber} onChange={(e) => set("taxNumber", e.target.value)} placeholder="South African tax number" className={inputClass} />
+          </div>
+          <div className="sm:col-span-2">
+            <label className={labelClass}>Street Address</label>
+            <input type="text" value={data.streetAddress} onChange={(e) => set("streetAddress", e.target.value)} placeholder="e.g. 12 Church Street" className={inputClass} />
+          </div>
+          <div>
+            <label className={labelClass}>Suburb</label>
+            <input type="text" value={data.suburb} onChange={(e) => set("suburb", e.target.value)} placeholder="e.g. Arcadia" className={inputClass} />
+          </div>
+          <div>
+            <label className={labelClass}>City / Town</label>
+            <input type="text" value={data.city} onChange={(e) => set("city", e.target.value)} placeholder="e.g. Pretoria" className={inputClass} />
+          </div>
+          <div>
+            <label className={labelClass}>Province</label>
+            <select value={data.province} onChange={(e) => set("province", e.target.value)} className={inputClass}>
+              <option value="">Select province…</option>
+              {SA_PROVINCES.map((p) => <option key={p} value={p}>{p}</option>)}
+            </select>
+          </div>
+          <div>
+            <label className={labelClass}>Postal Code</label>
+            <input type="text" value={data.postalCode} onChange={(e) => set("postalCode", e.target.value)} placeholder="e.g. 0083" className={inputClass} />
           </div>
         </div>
       </div>

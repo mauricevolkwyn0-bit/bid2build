@@ -57,6 +57,11 @@ export default async function ClientProfilePage() {
           isVatRegistered: profile?.is_vat_registered ?? false,
           vatNumber: profile?.vat_number ?? "",
           taxNumber: profile?.tax_number ?? "",
+          streetAddress: profile?.street_address ?? "",
+          suburb: profile?.suburb ?? "",
+          city: profile?.city ?? "",
+          province: profile?.province ?? "",
+          postalCode: profile?.postal_code ?? "",
         }}
       />
     </div>

@@ -13,6 +13,7 @@ export async function createJob(data: {
   province: string;
   desiredStartDate: string;
   timeframeDays: string;
+  imageUrls?: string[];
 }) {
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
@@ -46,6 +47,7 @@ export async function createJob(data: {
     location_point: `SRID=4326;POINT(${lng} ${lat})`,
     desired_start_date: data.desiredStartDate || null,
     timeframe_days: data.timeframeDays ? Number(data.timeframeDays) : null,
+    image_urls: data.imageUrls && data.imageUrls.length > 0 ? data.imageUrls : null,
     status: "open",
     date_posted: new Date().toISOString(),
   });
@@ -66,18 +68,37 @@ export async function updateClientProfile(
     isVatRegistered: boolean;
     vatNumber: string;
     taxNumber: string;
+    streetAddress: string;
+    suburb: string;
+    city: string;
+    province: string;
+    postalCode: string;
   }
 ) {
   const supabase = await createClient();
+
+  const { data: { user: authUser } } = await supabase.auth.getUser();
+  if (!authUser) return { error: "Not authenticated." };
 
   const { error: authError } = await supabase.auth.updateUser({
     data: { first_name: data.firstName, last_name: data.lastName, phone: data.phone },
   });
   if (authError) return { error: authError.message };
 
+  // Ensure public.users row exists (guards against orphaned auth users)
+  await supabase.from("users").upsert({
+    id: userId,
+    email: authUser.email ?? "",
+    role: authUser.user_metadata?.role ?? "client",
+    cellphone_number: data.phone || `pending_${userId}`,
+    password_hash: "SUPABASE_AUTH_MANAGED",
+    updated_at: new Date().toISOString(),
+  }, { onConflict: "id" });
+
   const { error: profileError } = await supabase
     .from("client_profiles")
-    .update({
+    .upsert({
+      user_id: userId,
       first_name: data.firstName,
       last_name: data.lastName,
       has_company: data.hasCompany,
@@ -86,16 +107,15 @@ export async function updateClientProfile(
       is_vat_registered: data.isVatRegistered,
       vat_number: data.vatNumber || null,
       tax_number: data.taxNumber || null,
+      street_address: data.streetAddress || null,
+      suburb: data.suburb || null,
+      city: data.city || null,
+      province: data.province || null,
+      postal_code: data.postalCode || null,
       updated_at: new Date().toISOString(),
-    })
-    .eq("user_id", userId);
+    }, { onConflict: "user_id" });
 
   if (profileError) return { error: profileError.message };
-
-  await supabase
-    .from("users")
-    .update({ cellphone_number: data.phone, updated_at: new Date().toISOString() })
-    .eq("id", userId);
 
   return { success: true };
 }
