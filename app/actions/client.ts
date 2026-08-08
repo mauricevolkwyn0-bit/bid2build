@@ -56,6 +56,35 @@ export async function createJob(data: {
   return { success: true };
 }
 
+export async function awardBid(bidId: string, jobId: string) {
+  const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) return { error: "Not authenticated." };
+
+  const { data: job } = await supabase
+    .from("jobs")
+    .select("id, status, client_id")
+    .eq("id", jobId)
+    .eq("client_id", user.id)
+    .single();
+
+  if (!job) return { error: "Job not found." };
+  if (job.status !== "open") return { error: "This job is no longer open." };
+
+  const { error: bidError } = await supabase
+    .from("bids")
+    .update({ status: "awarded" })
+    .eq("id", bidId)
+    .eq("job_id", jobId);
+
+  if (bidError) return { error: bidError.message };
+
+  await supabase.from("bids").update({ status: "rejected" }).eq("job_id", jobId).neq("id", bidId);
+  await supabase.from("jobs").update({ status: "awarded" }).eq("id", jobId);
+
+  return { success: true };
+}
+
 export async function updateClientProfile(
   userId: string,
   data: {
