@@ -156,8 +156,8 @@ export async function initiateBidPayment(data: {
     });
     if (!res.ok) {
       const text = await res.text();
-      const errMsg = text.match(/<span class="err-msg">(.*?)<\/span>/s)?.[1]?.replace(/<[^>]+>/g, "").trim()
-        ?? text.match(/<div class="error-block__message">(.*?)<\/div>/s)?.[1]?.replace(/<[^>]+>/g, "").trim()
+      const errMsg = text.match(/<span class="err-msg">([\s\S]*?)<\/span>/)?.[1]?.replace(/<[^>]+>/g, "").trim()
+        ?? text.match(/<div class="error-block__message">([\s\S]*?)<\/div>/)?.[1]?.replace(/<[^>]+>/g, "").trim()
         ?? text.substring(0, 400);
       return { error: `PayFast: ${errMsg}` };
     }
