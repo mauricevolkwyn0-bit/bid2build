@@ -156,7 +156,10 @@ export async function initiateBidPayment(data: {
     });
     if (!res.ok) {
       const text = await res.text();
-      return { error: `DEBUG — paramStr: ${paramStr} ||| signature: ${signature} ||| PayFast: ${text.substring(0, 300)}` };
+      const errMsg = text.match(/<span class="err-msg">(.*?)<\/span>/s)?.[1]?.replace(/<[^>]+>/g, "").trim()
+        ?? text.match(/<div class="error-block__message">(.*?)<\/div>/s)?.[1]?.replace(/<[^>]+>/g, "").trim()
+        ?? text.substring(0, 400);
+      return { error: `PayFast: ${errMsg}` };
     }
     const { uuid } = await res.json();
     return { uuid, sandbox };
