@@ -134,29 +134,30 @@ export async function initiateBidPayment(data: {
     item_name:     "Bid Fee - Bid2Build",
   };
 
-  // Only include non-empty params — must match exactly what we sign
-  const filteredParams = Object.fromEntries(
-    Object.entries(params).filter(([, v]) => v !== "")
-  );
-
-  // Generate MD5 signature (PHP urlencode-compatible)
-  const pfString = Object.entries(filteredParams)
-    .map(([k, v]) => `${k}=${encodeURIComponent(v.trim()).replace(/%20/g, "+").replace(/!/g, "%21").replace(/'/g, "%27").replace(/\(/g, "%28").replace(/\)/g, "%29").replace(/\*/g, "%2A")}`)
-    .join("&");
+  // Build param string exactly as PayFast's own Node.js example does
+  let pfOutput = "";
+  for (const [k, v] of Object.entries(params)) {
+    if (v !== "") {
+      pfOutput += `${k}=${encodeURIComponent(v.trim()).replace(/%20/g, "+")}&`;
+    }
+  }
+  const paramStr = pfOutput.slice(0, -1); // remove trailing &
   const toHash = passphrase
-    ? `${pfString}&passphrase=${encodeURIComponent(passphrase.trim()).replace(/%20/g, "+")}`
-    : pfString;
+    ? `${paramStr}&passphrase=${encodeURIComponent(passphrase.trim()).replace(/%20/g, "+")}`
+    : paramStr;
   const signature = crypto.createHash("md5").update(toHash).digest("hex");
 
   try {
-    // Use the same encoded string as the signature to guarantee consistency
-    const body = `${pfString}&signature=${signature}`;
+    const body = `${paramStr}&signature=${signature}`;
     const res = await fetch(`${baseUrl}/onsite/process`, {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body,
     });
-    if (!res.ok) return { error: `PayFast error (merchant_id=${merchantId}, sandbox=${sandbox}): ${await res.text()}` };
+    if (!res.ok) {
+      const text = await res.text();
+      return { error: `DEBUG — paramStr: ${paramStr} ||| signature: ${signature} ||| PayFast: ${text.substring(0, 300)}` };
+    }
     const { uuid } = await res.json();
     return { uuid, sandbox };
   } catch (e) {
