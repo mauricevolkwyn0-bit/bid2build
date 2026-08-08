@@ -149,10 +149,12 @@ export async function initiateBidPayment(data: {
   const signature = crypto.createHash("md5").update(toHash).digest("hex");
 
   try {
+    // Use the same encoded string as the signature to guarantee consistency
+    const body = `${pfString}&signature=${signature}`;
     const res = await fetch(`${baseUrl}/onsite/process`, {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: new URLSearchParams({ ...filteredParams, signature }).toString(),
+      body,
     });
     if (!res.ok) return { error: `PayFast error (merchant_id=${merchantId}, sandbox=${sandbox}): ${await res.text()}` };
     const { uuid } = await res.json();
