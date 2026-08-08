@@ -111,7 +111,7 @@ export async function initiateBidPayment(data: {
     .select("id")
     .single();
 
-  if (paymentError || !payment) return { error: "Failed to initiate payment." };
+  if (paymentError || !payment) return { error: `Failed to initiate payment: ${paymentError?.message ?? "no payment record returned"}` };
 
   const merchantId  = process.env.PAYFAST_MERCHANT_ID!;
   const merchantKey = process.env.PAYFAST_MERCHANT_KEY!;
@@ -151,8 +151,8 @@ export async function initiateBidPayment(data: {
     if (!res.ok) return { error: `PayFast error: ${await res.text()}` };
     const { uuid } = await res.json();
     return { uuid, sandbox };
-  } catch {
-    return { error: "Could not connect to PayFast. Please try again." };
+  } catch (e) {
+    return { error: `Could not connect to PayFast: ${e instanceof Error ? e.message : String(e)}` };
   }
 }
 
