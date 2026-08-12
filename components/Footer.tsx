@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import PostJobButton from "@/components/PostJobButton";
 
 const links = {
   "For Clients": [
@@ -75,9 +76,16 @@ export default function Footer() {
             <ul className="flex flex-col gap-2.5">
               {items.map((item) => (
                 <li key={item.label}>
-                  <Link href={item.href} className="text-sm text-gray-500 hover:text-orange-500 transition-colors">
-                    {item.label}
-                  </Link>
+                  {item.label === "Post a Job" ? (
+                    <PostJobButton
+                      label="Post a Job"
+                      className="text-sm text-gray-500 hover:text-orange-500 transition-colors"
+                    />
+                  ) : (
+                    <Link href={item.href} className="text-sm text-gray-500 hover:text-orange-500 transition-colors">
+                      {item.label}
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>
