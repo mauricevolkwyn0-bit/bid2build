@@ -23,7 +23,7 @@ export default function Home() {
             Connect with Credible and Professional Building Contractors
           </h1>
           <p className="text-sm sm:text-xl text-white/80 mb-8 max-w-xl">
-            Post your new project for instant competitive quotes from contractors in and around your area — builders, carpenters, plumbers, electricians, painters, and waterproofing specialists.
+            Post your new project for instant competitive quotes from contractors in and around your area. We have contractors ranging from builders, carpenters, plumbers, electricians, painters, and waterproofing specialists.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 w-full max-w-xs sm:max-w-none sm:w-auto">
             <PostJobButton className="inline-flex items-center justify-center rounded-full bg-orange-500 hover:bg-orange-600 text-white font-semibold text-sm px-6 py-2.5 transition-colors" />
