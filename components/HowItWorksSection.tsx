@@ -7,7 +7,7 @@ const clientSteps = [
   {
     number: "01",
     title: "Register as a Client",
-    description: "Create your free account in minutes and tell us about the type of work you need done.",
+    description: "Create your free account in minutes and tell us about the type of construction work you need done.",
     icon: (
       <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
@@ -17,7 +17,7 @@ const clientSteps = [
   {
     number: "02",
     title: "Post a Job",
-    description: "Describe the work, set your budget and timeline, and publish your job listing to our network of professionals.",
+    description: "Give a detailed description of the work and timeline. Publish your job listing to our network of professionals.",
     icon: (
       <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
@@ -50,7 +50,7 @@ const contractorSteps = [
   {
     number: "01",
     title: "Register as a Contractor",
-    description: "Sign up, complete your profile, and showcase your skills, experience, and past work to stand out.",
+    description: "Sign up, complete your profile, and showcase your skills, experience, past work done and team structure.",
     icon: (
       <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" d="M11.42 15.17L17.25 21A2.652 2.652 0 0021 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 11-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 004.486-6.336l-3.276 3.277a3.004 3.004 0 01-2.25-2.25l3.276-3.276a4.5 4.5 0 00-6.336 4.486c.091 1.076-.071 2.264-.904 2.95l-.102.085m-1.745 1.437L5.909 7.5H4.5L2.25 3.75l1.5-1.5L7.5 4.5v1.409l4.26 4.26m-1.745 1.437l1.745-1.437m6.615 8.206L15.75 15.75M4.867 19.125h.008v.008h-.008v-.008z" />
@@ -70,7 +70,7 @@ const contractorSteps = [
   {
     number: "03",
     title: "Submit a Bid",
-    description: "Review the job details and submit a competitive bid with your price, timeline, and approach.",
+    description: "Review the job details and submit a competitive bid with your price, timeline, and reference of your experience.",
     icon: (
       <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
@@ -100,7 +100,7 @@ export default function HowItWorksSection() {
         <div className="text-center mb-8 sm:mb-10">
           <h2 className="text-3xl font-bold text-gray-900 mb-3">How It Works</h2>
           <p className="text-gray-500 max-w-xl mx-auto">
-            Whether you're hiring or looking for work, Bid2Build makes it simple.
+            Whether you are hiring a contractor or a contractor looking for construction opportunities, Bid2Build makes it simple.
           </p>
         </div>
 

@@ -20,11 +20,10 @@ export default function Home() {
         <div className="absolute inset-0 bg-black/50" />
         <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-6">
           <h1 className="text-3xl sm:text-5xl font-bold text-white mb-4 max-w-3xl leading-tight">
-            Connect with Skilled Professionals
+            Connect with Credible and Professional Building Contractors
           </h1>
           <p className="text-sm sm:text-xl text-white/80 mb-8 max-w-xl">
-            Post a job, receive bids, and hire the best tradespeople and
-            contractors all in one place.
+            Post your new project for instant competitive quotes from contractors in and around your area — builders, carpenters, plumbers, electricians, painters, and waterproofing specialists.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 w-full max-w-xs sm:max-w-none sm:w-auto">
             <PostJobButton className="inline-flex items-center justify-center rounded-full bg-orange-500 hover:bg-orange-600 text-white font-semibold text-sm px-6 py-2.5 transition-colors" />
@@ -77,9 +76,9 @@ export default function Home() {
               Building Opportunities, One Bid at a Time
             </h2>
             <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
-              Bid2Build was founded with a simple mission — to connect people who need skilled work done with the
-              professionals who can do it best. We believe that finding reliable tradespeople and contractors
-              shouldn&apos;t be complicated or time-consuming.
+              Bid2Build is a construction bidding platform that seeks to connect clients looking to build or
+              maintain an existing building structure with credible and competent contractors looking for
+              building construction opportunities in and around their area.
             </p>
             <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
               Our platform brings together clients, contractors, and suppliers in one trusted marketplace.

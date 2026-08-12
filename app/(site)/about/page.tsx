@@ -106,10 +106,10 @@ export default function AboutPage() {
               Making skilled work accessible to everyone
             </h2>
             <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
-              Bid2Build was founded with a simple belief — finding a reliable contractor shouldn't require knowing the right person. Whether you need a plumber in Pretoria, a builder in Cape Town, or an electrician in Durban, you deserve a fast, fair, and transparent way to get it done.
+              Bid2Build is a construction bidding platform that seeks to connect clients looking to build or maintain an existing building structure with credible and competent contractors looking for building construction opportunities in and around their area.
             </p>
             <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
-              We built a platform where clients post jobs, contractors compete on merit, and every transaction is protected. The result is better outcomes for everyone — fairer prices, higher quality work, and contractors who grow their business on reputation rather than word of mouth alone.
+              Our platform brings together clients, contractors, and suppliers in one trusted marketplace. Whether you&apos;re renovating your home, managing a construction project, or growing your trade business, Bid2Build gives you the tools to get it done with confidence.
             </p>
             <Link
               href="/how-it-works"
