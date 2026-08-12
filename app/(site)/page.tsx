@@ -119,12 +119,11 @@ export default function Home() {
             Watch how easy it is to post a job, receive bids, and get your project completed with confidence.
           </p>
           <div className="relative w-full aspect-video rounded-2xl overflow-hidden shadow-2xl">
-            <iframe
-              className="absolute inset-0 w-full h-full"
-              src="https://www.youtube.com/embed/YOUR_YOUTUBE_VIDEO_ID"
-              title="Bid2Build — How It Works"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
+            <video
+              className="absolute inset-0 w-full h-full object-cover"
+              src="/videos/can_you_please_remove_the_logo.mp4"
+              controls
+              playsInline
             />
           </div>
         </div>
