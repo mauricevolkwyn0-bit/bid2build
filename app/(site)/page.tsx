@@ -123,6 +123,7 @@ export default function Home() {
               className="absolute inset-0 w-full h-full object-cover"
               src="/videos/can_you_please_remove_the_logo.mp4"
               controls
+              loop
               playsInline
             />
           </div>
