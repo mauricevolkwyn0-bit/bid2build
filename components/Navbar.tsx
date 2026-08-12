@@ -15,6 +15,7 @@ import PostJobButton from "@/components/PostJobButton";
 
 const navigation = [
   { name: "Home", href: "/" },
+  { name: "About Us", href: "/about" },
   { name: "How it Works", href: "/how-it-works" },
   { name: "Contacts", href: "/contacts" },
 ];
