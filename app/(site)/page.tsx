@@ -4,7 +4,7 @@ import HowItWorksSection from "@/components/HowItWorksSection";
 import PostJobButton from "@/components/PostJobButton";
 import FindWorkButton from "@/components/FindWorkButton";
 
-export default function Home() {
+export default function test() {
   return (
     <div className="flex flex-col flex-1 bg-zinc-50">
 
