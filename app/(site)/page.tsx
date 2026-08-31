@@ -12,7 +12,7 @@ export default function test() {
       <section className="relative w-full h-[500px] sm:h-[600px]">
         <Image
           src="/images/home_hero.jpeg"
-          alt="Bid2Build hero"
+          alt="Built4U hero"
           fill
           className="object-cover"
           priority
@@ -38,7 +38,7 @@ export default function test() {
       </section>
 
       {/* ── Stats ── */}
-      <section className="bg-gray-900 py-10 sm:py-14 px-4">
+      <section className="bg-brand py-10 sm:py-14 px-4">
         <div className="max-w-5xl mx-auto grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 text-center">
           {[
             { value: "12,500+", label: "Total Clients" },
@@ -63,7 +63,7 @@ export default function test() {
           <div className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden shadow-lg">
             <Image
               src="/images/about_image.jpeg"
-              alt="About Bid2Build"
+              alt="About Built4U"
               fill
               className="object-cover"
             />
@@ -76,14 +76,14 @@ export default function test() {
               Building Opportunities, One Bid at a Time
             </h2>
             <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
-              Bid2Build is a construction bidding platform that seeks to connect clients looking to build or
+              Built4U is a construction bidding platform that seeks to connect clients looking to build or
               maintain an existing building structure with credible and competent contractors looking for
               building construction opportunities in and around their area.
             </p>
             <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
               Our platform brings together clients, contractors, and suppliers in one trusted marketplace.
               Whether you&apos;re renovating your home, managing a construction project, or growing your trade
-              business, Bid2Build gives you the tools to get it done with confidence.
+              business, Built4U gives you the tools to get it done with confidence.
             </p>
             <div className="flex gap-6 sm:gap-8 mt-1">
               {[
@@ -110,10 +110,10 @@ export default function test() {
       </section>
 
       {/* ── Video ── */}
-      <section className="bg-gray-900 py-12 sm:py-20 px-4">
+      <section className="bg-brand py-12 sm:py-20 px-4">
         <div className="max-w-4xl mx-auto text-center">
           <span className="text-xs font-bold text-orange-500 uppercase tracking-widest">Watch &amp; Learn</span>
-          <h2 className="text-2xl sm:text-3xl font-bold text-white mt-2 mb-2">See Bid2Build in Action</h2>
+          <h2 className="text-2xl sm:text-3xl font-bold text-white mt-2 mb-2">See Built4U in Action</h2>
           <p className="text-sm sm:text-base text-gray-400 mb-6 sm:mb-10 max-w-xl mx-auto">
             Watch how easy it is to post a job, receive bids, and get your project completed with confidence.
           </p>
@@ -136,11 +136,11 @@ export default function test() {
             Ready to Build Something Great?
           </h2>
           <p className="text-orange-100 text-sm sm:text-lg mb-8 sm:mb-10 max-w-xl mx-auto">
-            Join thousands of clients and contractors already using Bid2Build to get work done faster, smarter, and with confidence.
+            Join thousands of clients and contractors already using Built4U to get work done faster, smarter, and with confidence.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
             <PostJobButton className="inline-flex items-center justify-center rounded-full bg-white text-orange-600 font-semibold px-8 py-3 hover:bg-orange-50 transition-colors w-full sm:w-auto" />
-            <FindWorkButton className="inline-flex items-center justify-center rounded-full bg-gray-900 text-white font-semibold px-8 py-3 hover:bg-gray-800 transition-colors w-full sm:w-auto" />
+            <FindWorkButton className="inline-flex items-center justify-center rounded-full bg-brand text-white font-semibold px-8 py-3 hover:bg-brand-dark transition-colors w-full sm:w-auto" />
           </div>
           <p className="text-orange-200 text-xs sm:text-sm mt-8 flex flex-wrap items-center justify-center gap-2">
             <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">

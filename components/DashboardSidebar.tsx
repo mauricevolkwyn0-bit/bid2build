@@ -62,10 +62,10 @@ export default function DashboardSidebar({ role, firstName, lastName }: Dashboar
   const initials = `${firstName[0] ?? ""}${lastName[0] ?? ""}`.toUpperCase();
 
   return (
-    <aside className="hidden lg:flex w-64 bg-gray-900 h-full flex-col flex-shrink-0 overflow-y-auto">
+    <aside className="hidden lg:flex w-64 bg-brand h-full flex-col flex-shrink-0 overflow-y-auto">
       {/* Logo */}
       <div className="p-6 border-b border-gray-800">
-        <Image src="/images/company_logo.png" alt="Bid2Build" width={140} height={46} />
+        <Image src="/images/company_logo.png" alt="Built4U" width={140} height={46} />
       </div>
 
       {/* User info */}
@@ -94,7 +94,7 @@ export default function DashboardSidebar({ role, firstName, lastName }: Dashboar
               className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors ${
                 isActive
                   ? "bg-orange-500 text-white"
-                  : "text-gray-400 hover:text-white hover:bg-gray-800"
+                  : "text-gray-400 hover:text-white hover:bg-brand-dark"
               }`}
             >
               {item.icon}

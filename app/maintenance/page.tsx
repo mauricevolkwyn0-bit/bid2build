@@ -32,7 +32,7 @@ export default async function MaintenancePage() {
       </h1>
 
       <p className="text-gray-500 text-center max-w-md mb-4 leading-relaxed">
-        Bid2Build is almost ready. We're putting the final touches in place to connect homeowners with trusted contractors across South Africa.
+        Built4U is almost ready. We're putting the final touches in place to connect homeowners with trusted contractors across South Africa.
       </p>
 
       <p className="text-sm text-gray-400 text-center mb-10">

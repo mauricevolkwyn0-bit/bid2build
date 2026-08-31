@@ -39,7 +39,7 @@ export default function OfficeMap() {
       .setLngLat([LNG, LAT])
       .setPopup(
         new mapboxgl.Popup({ offset: 14 }).setHTML(
-          `<p style="margin:0;font-size:13px;font-weight:600;color:#111">Bid2Build Office</p>
+          `<p style="margin:0;font-size:13px;font-weight:600;color:#111">Built4U Office</p>
            <p style="margin:4px 0 0;font-size:12px;color:#555">10 Horridus Place<br>Montana Park, 0182</p>`
         )
       )

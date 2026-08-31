@@ -46,12 +46,12 @@ export async function signUpUser(data: {
   // Send via Resend API directly (no SMTP)
   const resend = new Resend(process.env.RESEND_API_KEY);
   const { error: emailError } = await resend.emails.send({
-    from: "Bid2Build <noreply@bid2build.co.za>",
+    from: "Built4U <noreply@built4u.co.za>",
     to: data.email,
-    subject: "Your Bid2Build verification code",
+    subject: "Your Built4U verification code",
     html: `
       <div style="font-family:sans-serif;max-width:480px;margin:0 auto;padding:32px;">
-        <img src="https://bid2build.co.za/images/company_logo.png" alt="Bid2Build" width="160" style="margin-bottom:24px;" />
+        <img src="https://built4u.co.za/images/company_logo.png" alt="Built4U" width="160" style="margin-bottom:24px;" />
         <h2 style="color:#f97316;margin:0 0 8px;">Verify your email</h2>
         <p style="color:#374151;margin:0 0 24px;">Enter this code to complete your registration:</p>
         <div style="font-size:40px;font-weight:700;letter-spacing:16px;color:#111827;padding:24px;background:#f9fafb;border-radius:12px;text-align:center;">

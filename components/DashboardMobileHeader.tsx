@@ -18,10 +18,10 @@ export default function DashboardMobileHeader({ firstName, lastName, role }: Pro
   }
 
   return (
-    <header className="lg:hidden flex-shrink-0 bg-gray-900 px-4 h-14 flex items-center justify-between">
+    <header className="lg:hidden flex-shrink-0 bg-brand px-4 h-14 flex items-center justify-between">
       <Image
         src="/images/company_logo.png"
-        alt="Bid2Build"
+        alt="Built4U"
         width={120}
         height={40}
         className="h-8 w-auto"

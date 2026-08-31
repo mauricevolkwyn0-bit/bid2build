@@ -52,7 +52,7 @@ Cookies may be "session cookies" (deleted when you close your browser) or "persi
   },
   {
     title: "How We Use Cookies",
-    content: `Bid2Build uses cookies and similar technologies (such as local storage and pixels) for the following purposes:
+    content: `Built4U uses cookies and similar technologies (such as local storage and pixels) for the following purposes:
 
 • To keep you logged in between visits.
 • To secure the Platform against unauthorised access.
@@ -101,8 +101,8 @@ Please note that blocking cookies may affect the functionality of our Platform. 
     title: "Contact Us",
     content: `If you have any questions about our use of cookies, please contact us:
 
-Bid2Build (Pty) Ltd
-Email: privacy@bid2build.co.za
+Built4U (Pty) Ltd
+Email: privacy@built4u.co.za
 Phone: +27 75 001 0317
 Address: 10 Horridus Place, Montana Park, Pretoria, 0182`,
   },

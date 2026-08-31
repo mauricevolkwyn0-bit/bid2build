@@ -3,9 +3,9 @@ import Link from "next/link";
 const sections = [
   {
     title: "1. Introduction",
-    content: `Bid2Build (Pty) Ltd ("Bid2Build", "we", "us", or "our") is committed to protecting your personal information in accordance with the Protection of Personal Information Act 4 of 2013 (POPIA) and all applicable South African privacy legislation.
+    content: `Built4U (Pty) Ltd ("Built4U", "we", "us", or "our") is committed to protecting your personal information in accordance with the Protection of Personal Information Act 4 of 2013 (POPIA) and all applicable South African privacy legislation.
 
-This Privacy Policy explains how we collect, use, disclose, and safeguard your personal information when you use our website and platform at bid2build.co.za. Please read this policy carefully. By using our services, you consent to the practices described herein.`,
+This Privacy Policy explains how we collect, use, disclose, and safeguard your personal information when you use our website and platform at built4u.co.za. Please read this policy carefully. By using our services, you consent to the practices described herein.`,
   },
   {
     title: "2. Information We Collect",
@@ -27,7 +27,7 @@ Communications: Messages sent between users on our platform, and correspondence 
     title: "3. Purpose of Collection",
     content: `We use your personal information for the following purposes:
 
-• To create and manage your account on the Bid2Build platform.
+• To create and manage your account on the Built4U platform.
 • To facilitate connections between clients and contractors.
 • To process payments and manage escrow transactions.
 • To verify contractor credentials and professional certifications.
@@ -54,7 +54,7 @@ Service Providers: Third-party processors who assist us in operating the platfor
 
 Other Users: Limited profile information (name, trade, ratings, location) is visible to other users as necessary for the marketplace to function.
 
-Legal Authorities: Where required by law, court order, or to protect the rights and safety of Bid2Build, its users, or the public.
+Legal Authorities: Where required by law, court order, or to protect the rights and safety of Built4U, its users, or the public.
 
 Business Transfers: In the event of a merger, acquisition, or sale of assets, your information may be transferred to the acquiring entity, subject to the same privacy protections.`,
   },
@@ -73,7 +73,7 @@ Business Transfers: In the event of a merger, acquisition, or sale of assets, yo
 • Object to the processing of your information for marketing purposes.
 • Lodge a complaint with the Information Regulator of South Africa.
 
-To exercise any of these rights, please contact our Information Officer at privacy@bid2build.co.za.`,
+To exercise any of these rights, please contact our Information Officer at privacy@built4u.co.za.`,
   },
   {
     title: "8. Cookies",
@@ -95,8 +95,8 @@ To exercise any of these rights, please contact our Information Officer at priva
     title: "12. Contact Us",
     content: `If you have any questions about this Privacy Policy or wish to exercise your rights, please contact our Information Officer:
 
-Bid2Build (Pty) Ltd
-Email: privacy@bid2build.co.za
+Built4U (Pty) Ltd
+Email: privacy@built4u.co.za
 Phone: +27 75 001 0317
 Address: 10 Horridus Place, Montana Park, Pretoria, 0182`,
   },

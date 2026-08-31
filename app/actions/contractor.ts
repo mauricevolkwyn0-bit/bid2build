@@ -131,7 +131,7 @@ export async function initiateBidPayment(data: {
     email_address: user.email ?? "",
     m_payment_id:  payment.id,
     amount:        "200.00",
-    item_name:     "Bid Fee - Bid2Build",
+    item_name:     "Bid Fee - Built4U",
   };
 
   // Build param string exactly as PayFast's own Node.js example does

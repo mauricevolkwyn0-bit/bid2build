@@ -23,7 +23,7 @@ const values = [
   {
     title: "Access",
     description:
-      "Whether you're in Cape Town or Limpopo, Bid2Build connects you with skilled tradespeople across all nine provinces of South Africa.",
+      "Whether you're in Cape Town or Limpopo, Built4U connects you with skilled tradespeople across all nine provinces of South Africa.",
     icon: (
       <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
     ),
@@ -46,7 +46,7 @@ const stats = [
 ];
 
 const milestones = [
-  { year: "2019", text: "Bid2Build was founded in Johannesburg with a simple goal — make hiring tradespeople as easy as ordering online." },
+  { year: "2019", text: "Built4U was founded in Johannesburg with a simple goal — make hiring tradespeople as easy as ordering online." },
   { year: "2021", text: "Expanded to all nine provinces and launched verified contractor profiles with real client reviews." },
   { year: "2023", text: "Crossed 10 000 registered users and launched the mobile-first platform used by contractors across South Africa." },
   { year: "2025", text: "Introduced the secure bid-fee payment system, ensuring only serious contractors compete for your project." },
@@ -60,7 +60,7 @@ export default function AboutPage() {
       <section className="relative w-full h-72 md:h-96">
         <Image
           src="/images/construction_site_enhanced.png"
-          alt="About Bid2Build"
+          alt="About Built4U"
           fill
           className="object-cover"
           priority
@@ -78,7 +78,7 @@ export default function AboutPage() {
       </section>
 
       {/* ── Stats bar ── */}
-      <section className="bg-gray-900 py-10 px-4">
+      <section className="bg-brand py-10 px-4">
         <div className="max-w-5xl mx-auto grid grid-cols-2 lg:grid-cols-4 gap-6 text-center">
           {stats.map((s) => (
             <div key={s.label} className="flex flex-col items-center gap-1.5">
@@ -95,7 +95,7 @@ export default function AboutPage() {
           <div className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden shadow-lg">
             <Image
               src="/images/about_image.jpeg"
-              alt="Bid2Build team"
+              alt="Built4U team"
               fill
               className="object-cover"
             />
@@ -106,10 +106,10 @@ export default function AboutPage() {
               Making skilled work accessible to everyone
             </h2>
             <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
-              Bid2Build is a construction bidding platform that seeks to connect clients looking to build or maintain an existing building structure with credible and competent contractors looking for building construction opportunities in and around their area.
+              Built4U is a construction bidding platform that seeks to connect clients looking to build or maintain an existing building structure with credible and competent contractors looking for building construction opportunities in and around their area.
             </p>
             <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
-              Our platform brings together clients, contractors, and suppliers in one trusted marketplace. Whether you&apos;re renovating your home, managing a construction project, or growing your trade business, Bid2Build gives you the tools to get it done with confidence.
+              Our platform brings together clients, contractors, and suppliers in one trusted marketplace. Whether you&apos;re renovating your home, managing a construction project, or growing your trade business, Built4U gives you the tools to get it done with confidence.
             </p>
             <Link
               href="/how-it-works"
@@ -185,11 +185,11 @@ export default function AboutPage() {
             Ready to be part of it?
           </h2>
           <p className="text-orange-100 text-sm sm:text-lg mb-8 max-w-xl mx-auto">
-            Join thousands of clients and contractors already using Bid2Build to get work done faster, smarter, and with confidence.
+            Join thousands of clients and contractors already using Built4U to get work done faster, smarter, and with confidence.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
             <PostJobButton className="inline-flex items-center justify-center rounded-full bg-white text-orange-600 font-semibold px-8 py-3 hover:bg-orange-50 transition-colors w-full sm:w-auto" />
-            <FindWorkButton className="inline-flex items-center justify-center rounded-full bg-gray-900 text-white font-semibold px-8 py-3 hover:bg-gray-800 transition-colors w-full sm:w-auto" />
+            <FindWorkButton className="inline-flex items-center justify-center rounded-full bg-brand text-white font-semibold px-8 py-3 hover:bg-brand-dark transition-colors w-full sm:w-auto" />
           </div>
         </div>
       </section>

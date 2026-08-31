@@ -63,7 +63,7 @@ function VerifyOTPContent() {
         <div className="flex justify-center mb-6">
           <Image
             src="/images/company_logo.png"
-            alt="Bid2Build"
+            alt="Built4U"
             width={160}
             height={52}
             priority

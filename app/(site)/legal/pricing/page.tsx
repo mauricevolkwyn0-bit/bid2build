@@ -103,7 +103,7 @@ export default function PricingPage() {
             <p className="text-sm text-gray-600 leading-relaxed">
               Posting a job, receiving bids, and messaging contractors is completely free. A{" "}
               <span className="font-semibold text-orange-600">5% platform service fee</span> (plus VAT) is only charged
-              when you hire a contractor through Bid2Build. This covers secure escrow payments and our dispute resolution
+              when you hire a contractor through Built4U. This covers secure escrow payments and our dispute resolution
               service.
             </p>
           </div>
@@ -128,7 +128,7 @@ export default function PricingPage() {
                 key={plan.name}
                 className={`rounded-2xl p-6 flex flex-col gap-5 ${
                   plan.highlight
-                    ? "bg-gray-900 text-white ring-2 ring-orange-500"
+                    ? "bg-brand text-white ring-2 ring-orange-500"
                     : "bg-white shadow-sm"
                 }`}
               >
@@ -163,7 +163,7 @@ export default function PricingPage() {
                   className={`inline-flex items-center justify-center rounded-full font-semibold px-6 py-2.5 text-sm transition-colors ${
                     plan.highlight
                       ? "bg-orange-500 hover:bg-orange-600 text-white"
-                      : "bg-gray-900 hover:bg-gray-800 text-white"
+                      : "bg-brand hover:bg-brand-dark text-white"
                   }`}
                 >
                   {plan.cta}
@@ -211,7 +211,7 @@ export default function PricingPage() {
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
           <Link
             href="/faq"
-            className="inline-flex items-center justify-center rounded-full border-2 border-gray-900 text-gray-900 font-semibold px-6 py-2.5 text-sm hover:bg-gray-900 hover:text-white transition-colors"
+            className="inline-flex items-center justify-center rounded-full border-2 border-brand text-brand font-semibold px-6 py-2.5 text-sm hover:bg-brand hover:text-white transition-colors"
           >
             View FAQ
           </Link>

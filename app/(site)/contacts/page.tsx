@@ -50,7 +50,7 @@ export default function Contacts() {
               </div>
               <div>
                 <p className="text-sm font-semibold text-gray-900">Email</p>
-                <p className="text-sm text-gray-600">support@bid2build.com</p>
+                <p className="text-sm text-gray-600">support@built4u.co.za</p>
               </div>
             </div>
 

@@ -47,7 +47,7 @@ export default function Navbar() {
               <Link href="/">
                 <Image
                   src="/images/company_logo.png"
-                  alt="Bid2Build logo"
+                  alt="Built4U logo"
                   width={160}
                   height={64}
                   className="w-[140px] sm:w-[180px]"
@@ -88,7 +88,7 @@ export default function Navbar() {
             <span className="hidden sm:flex">
               <SignupModal />
             </span>
-            <PostJobButton className="hidden sm:inline-flex items-center justify-center rounded-full bg-gray-900 hover:bg-gray-800 text-white text-sm font-medium px-5 py-2 transition-colors" />
+            <PostJobButton className="hidden sm:inline-flex items-center justify-center rounded-full bg-brand hover:bg-brand-dark text-white text-sm font-medium px-5 py-2 transition-colors" />
           </div>
         </div>
       </div>
@@ -119,7 +119,7 @@ export default function Navbar() {
           <div className="pt-3 border-t border-gray-200 flex flex-col gap-2">
             <LoginModal />
             <SignupModal triggerClassName="block w-full text-center rounded-full bg-orange-500 hover:bg-orange-600 text-white text-sm font-medium px-5 py-2.5 transition-colors" />
-            <PostJobButton className="block w-full text-center rounded-full bg-gray-900 hover:bg-gray-800 text-white text-sm font-medium px-5 py-2.5 transition-colors" />
+            <PostJobButton className="block w-full text-center rounded-full bg-brand hover:bg-brand-dark text-white text-sm font-medium px-5 py-2.5 transition-colors" />
           </div>
         </div>
       </DisclosurePanel>

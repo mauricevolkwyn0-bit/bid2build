@@ -7,19 +7,19 @@ const faqs = [
     category: "General",
     items: [
       {
-        question: "What is Bid2Build?",
+        question: "What is Built4U?",
         answer:
-          "Bid2Build is an online marketplace that connects clients who need construction, renovation, or trade work done with qualified contractors and suppliers across South Africa. Clients post jobs, contractors submit bids, and clients choose the best fit.",
+          "Built4U is an online marketplace that connects clients who need construction, renovation, or trade work done with qualified contractors and suppliers across South Africa. Clients post jobs, contractors submit bids, and clients choose the best fit.",
       },
       {
-        question: "Is Bid2Build free to use?",
+        question: "Is Built4U free to use?",
         answer:
           "Creating an account and browsing jobs is free. Clients pay a small service fee when hiring a contractor through the platform. Contractors may subscribe to a plan to access bid submissions and premium features.",
       },
       {
-        question: "Which areas does Bid2Build cover?",
+        question: "Which areas does Built4U cover?",
         answer:
-          "Bid2Build currently operates across all 9 provinces of South Africa, with a strong focus on Gauteng, the Western Cape, and KwaZulu-Natal.",
+          "Built4U currently operates across all 9 provinces of South Africa, with a strong focus on Gauteng, the Western Cape, and KwaZulu-Natal.",
       },
     ],
   },
@@ -44,7 +44,7 @@ const faqs = [
       {
         question: "How do I pay for a job?",
         answer:
-          "Payments are handled securely through the Bid2Build platform. Funds are held in escrow and only released to the contractor once you confirm the work has been completed to your satisfaction.",
+          "Payments are handled securely through the Built4U platform. Funds are held in escrow and only released to the contractor once you confirm the work has been completed to your satisfaction.",
       },
     ],
   },
@@ -141,8 +141,8 @@ export default function FAQ() {
         </h1>
         <p className="text-lg text-gray-600 max-w-xl mx-auto">
           Can't find what you're looking for? Reach out to us at{" "}
-          <a href="mailto:info@bid2build.co.za" className="text-orange-500 hover:underline">
-            info@bid2build.co.za
+          <a href="mailto:info@built4u.co.za" className="text-orange-500 hover:underline">
+            info@built4u.co.za
           </a>
         </p>
       </section>

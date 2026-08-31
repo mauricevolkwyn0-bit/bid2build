@@ -109,7 +109,7 @@ export default function ContactForm() {
       {toast && (
         <div
           className={`fixed bottom-6 right-6 z-[200] flex items-start gap-3 px-5 py-4 rounded-2xl shadow-xl text-sm max-w-sm text-white transition-all ${
-            toast.type === "success" ? "bg-gray-900" : "bg-red-600"
+            toast.type === "success" ? "bg-brand" : "bg-red-600"
           }`}
         >
           {toast.type === "success" ? (

@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Bid2Build — Building Opportunities",
+  title: "Built4U — Building Opportunities",
   description: "Connect with skilled contractors and suppliers across South Africa. Post a job, receive bids, and get work done with confidence.",
   icons: {
     icon: [

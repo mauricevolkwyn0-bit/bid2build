@@ -35,7 +35,7 @@ export default function Footer() {
           <Link href="/">
             <Image
               src="/images/company_logo.png"
-              alt="Bid2Build logo"
+              alt="Built4U logo"
               width={160}
               height={52}
               priority
@@ -47,11 +47,11 @@ export default function Footer() {
 
           {/* Contact info */}
           <div className="flex flex-col gap-3 text-sm text-gray-500">
-            <a href="mailto:info@bid2build.co.za" className="flex items-center gap-2 hover:text-orange-500 transition-colors">
+            <a href="mailto:info@built4u.co.za" className="flex items-center gap-2 hover:text-orange-500 transition-colors">
               <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25H4.5a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5H4.5a2.25 2.25 0 00-2.25 2.25m19.5 0l-9.75 6.75L2.25 6.75" />
               </svg>
-              info@bid2build.co.za
+              info@built4u.co.za
             </a>
             <a href="tel:+27750010317" className="flex items-center gap-2 hover:text-orange-500 transition-colors">
               <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24">
@@ -97,7 +97,7 @@ export default function Footer() {
       <div className="border-t border-gray-200">
         <div className="max-w-7xl mx-auto px-6 py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="text-xs text-gray-400">
-            © {new Date().getFullYear()} Bid2Build. All rights reserved.
+            © {new Date().getFullYear()} Built4U. All rights reserved.
           </p>
           <div className="flex items-center gap-2 text-xs text-gray-400">
             <span>We accept:</span>

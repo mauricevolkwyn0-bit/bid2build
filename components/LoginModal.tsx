@@ -71,7 +71,7 @@ export default function LoginModal() {
             </button>
 
             <h2 className="text-2xl font-bold text-gray-900 mb-1">Welcome back</h2>
-            <p className="text-sm text-gray-500 mb-6">Log in to your Bid2Build account</p>
+            <p className="text-sm text-gray-500 mb-6">Log in to your Built4U account</p>
 
             <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
               <div className="flex flex-col gap-1.5">
