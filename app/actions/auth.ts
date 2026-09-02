@@ -16,32 +16,54 @@ export async function signUpUser(data: {
   phone: string;
   role: "client" | "contractor";
 }) {
-  const supabase = await createClient();
+  if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
+    console.error("signUpUser: missing Supabase environment variables");
+    return { error: "Server is not configured correctly. Please contact support." };
+  }
 
-  const { error } = await supabase.auth.signUp({
-    email: data.email,
-    password: data.password,
-    options: {
-      data: {
-        first_name: data.firstName,
-        last_name: data.lastName,
-        phone: data.phone,
-        role: data.role,
+  let supabase;
+  try {
+    supabase = await createClient();
+  } catch (err) {
+    console.error("signUpUser: failed to create Supabase client", err);
+    return { error: "Server is not configured correctly. Please contact support." };
+  }
+
+  let otp: string;
+  try {
+    const { error } = await supabase.auth.signUp({
+      email: data.email,
+      password: data.password,
+      options: {
+        data: {
+          first_name: data.firstName,
+          last_name: data.lastName,
+          phone: data.phone,
+          role: data.role,
+        },
       },
-    },
-  });
+    });
 
-  if (error) return { error: error.message };
+    if (error) return { error: error.message };
 
-  // Generate 6-digit OTP
-  const otp = Math.floor(100000 + Math.random() * 900000).toString();
-  const expiresAt = new Date(Date.now() + 10 * 60 * 1000).toISOString();
+    // Generate 6-digit OTP
+    otp = Math.floor(100000 + Math.random() * 900000).toString();
+    const expiresAt = new Date(Date.now() + 10 * 60 * 1000).toISOString();
 
-  await supabase.from("email_verifications").upsert({
-    email: data.email,
-    otp_hash: hashOtp(otp),
-    expires_at: expiresAt,
-  });
+    const { error: otpError } = await supabase.from("email_verifications").upsert({
+      email: data.email,
+      otp_hash: hashOtp(otp),
+      expires_at: expiresAt,
+    });
+
+    if (otpError) {
+      console.error("signUpUser: failed to store OTP", otpError);
+      return { error: "Something went wrong creating your account. Please try again." };
+    }
+  } catch (err) {
+    console.error("signUpUser: unexpected error during signup", err);
+    return { error: "Something went wrong creating your account. Please try again." };
+  }
 
   if (!process.env.RESEND_API_KEY) {
     console.error("signUpUser: RESEND_API_KEY is not configured");
