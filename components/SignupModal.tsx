@@ -145,24 +145,28 @@ export default function SignupModal({
 
                     const phone = fd.get("phone") as string;
 
-                    const result = await signUpUser({
-                      firstName,
-                      lastName,
-                      email,
-                      password,
-                      phone,
-                      role: role!,
-                    });
+                    try {
+                      const result = await signUpUser({
+                        firstName,
+                        lastName,
+                        email,
+                        password,
+                        phone,
+                        role: role!,
+                      });
 
-                    setLoading(false);
+                      if (result.error) {
+                        setFormError(result.error);
+                        return;
+                      }
 
-                    if (result.error) {
-                      setFormError(result.error);
-                      return;
+                      handleClose();
+                      router.push(`/verify-otp?email=${encodeURIComponent(email)}`);
+                    } catch {
+                      setFormError("Something went wrong. Please try again.");
+                    } finally {
+                      setLoading(false);
                     }
-
-                    handleClose();
-                    router.push(`/verify-otp?email=${encodeURIComponent(email)}`);
                   }}
                 >
                   <div className="grid grid-cols-2 gap-4">

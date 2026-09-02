@@ -43,26 +43,36 @@ export async function signUpUser(data: {
     expires_at: expiresAt,
   });
 
-  // Send via Resend API directly (no SMTP)
-  const resend = new Resend(process.env.RESEND_API_KEY);
-  const { error: emailError } = await resend.emails.send({
-    from: "Bid2Build <noreply@bid2build.co.za>",
-    to: data.email,
-    subject: "Your Bid2Build verification code",
-    html: `
-      <div style="font-family:sans-serif;max-width:480px;margin:0 auto;padding:32px;">
-        <img src="https://bid2build.co.za/images/company_logo.png" alt="Bid2Build" width="160" style="margin-bottom:24px;" />
-        <h2 style="color:#f97316;margin:0 0 8px;">Verify your email</h2>
-        <p style="color:#374151;margin:0 0 24px;">Enter this code to complete your registration:</p>
-        <div style="font-size:40px;font-weight:700;letter-spacing:16px;color:#111827;padding:24px;background:#f9fafb;border-radius:12px;text-align:center;">
-          ${otp}
-        </div>
-        <p style="color:#9ca3af;font-size:13px;margin-top:16px;">This code expires in 10 minutes. If you didn't request this, you can ignore this email.</p>
-      </div>
-    `,
-  });
+  if (!process.env.RESEND_API_KEY) {
+    console.error("signUpUser: RESEND_API_KEY is not configured");
+    return { error: "Email service is not configured. Please contact support." };
+  }
 
-  if (emailError) return { error: "Failed to send verification email. Please try again." };
+  // Send via Resend API directly (no SMTP)
+  try {
+    const resend = new Resend(process.env.RESEND_API_KEY);
+    const { error: emailError } = await resend.emails.send({
+      from: "Bid2Build <noreply@bid2build.co.za>",
+      to: data.email,
+      subject: "Your Bid2Build verification code",
+      html: `
+        <div style="font-family:sans-serif;max-width:480px;margin:0 auto;padding:32px;">
+          <img src="https://bid2build.co.za/images/company_logo.png" alt="Bid2Build" width="160" style="margin-bottom:24px;" />
+          <h2 style="color:#f97316;margin:0 0 8px;">Verify your email</h2>
+          <p style="color:#374151;margin:0 0 24px;">Enter this code to complete your registration:</p>
+          <div style="font-size:40px;font-weight:700;letter-spacing:16px;color:#111827;padding:24px;background:#f9fafb;border-radius:12px;text-align:center;">
+            ${otp}
+          </div>
+          <p style="color:#9ca3af;font-size:13px;margin-top:16px;">This code expires in 10 minutes. If you didn't request this, you can ignore this email.</p>
+        </div>
+      `,
+    });
+
+    if (emailError) return { error: "Failed to send verification email. Please try again." };
+  } catch (err) {
+    console.error("signUpUser: Resend send failed", err);
+    return { error: "Failed to send verification email. Please try again." };
+  }
 
   return { success: true };
 }
